@@ -1,0 +1,7 @@
+ADDRESS,TARGET_FOLDER,ENTRY_POINT,ACTION,FIELD,VALUE,STATUS
+GCurve3D,01_FOLDER_SUBSTRATE/metadata,metadata,set_kex_field,user.kex.role,geometry_runtime,PENDING
+BrowserOS,02_RUNTIME_SECTORS/BROWSER_OS,event,touch,.kex_boot,BOOT,PENDING
+WaveEnv,01_FOLDER_SUBSTRATE/hidden_files,hidden_file,write,.kex_wave_env.json,ENV constrains WAVE; WAVE reveals ENV,PENDING
+SSD0,02_RUNTIME_SECTORS/SSD0,path,mount,mount_point,/mnt/kex/ssd0,PENDING
+NestedSSD,02_RUNTIME_SECTORS/NESTED_SSD,links_mounts,mount_inner,mount_point,/mnt/kex/ssd0/inner_ssd1,PENDING
+CPUFabric,02_RUNTIME_SECTORS/CPU_FABRIC,hidden_file,write,.kex_cpu_fabric.json,execute/audit objective/subjective wave/storage,PENDING

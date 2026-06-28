@@ -1,0 +1,132 @@
+{
+  "name": "KEX HyperDrive Dashboard UI",
+  "created_utc": "2026-06-05T06:54:40.336192+00:00",
+  "files": [
+    {
+      "path": "package.json",
+      "size": 607,
+      "sha256": "079cf7afcb943bde5d9b08235bdad317fd2d0412a93ce2c6ecaaf963527bb013"
+    },
+    {
+      "path": "index.html",
+      "size": 298,
+      "sha256": "a9727164083a97d95617628325f0a48732fc8624b8c163dae1e7dfa56b3298ba"
+    },
+    {
+      "path": "tsconfig.json",
+      "size": 399,
+      "sha256": "1c92dfc941162623702ae363f22101e345503c6fe5478f55d5549089dde85317"
+    },
+    {
+      "path": "vite.config.ts",
+      "size": 263,
+      "sha256": "1278c326c86b5461c2e97fb5f71f5163085c2cc17851988c63da4026a39f4720"
+    },
+    {
+      "path": "README.md",
+      "size": 702,
+      "sha256": "4a827271a594865a13e71b416375bc59b65ad18f800c9655feac1fb9f07f0ccc"
+    },
+    {
+      "path": "src/main.tsx",
+      "size": 236,
+      "sha256": "e994230bc895c282867ef3ea4cdc2ba7c613c176f30793467dfa7d4a7d6dd142"
+    },
+    {
+      "path": "src/types.ts",
+      "size": 947,
+      "sha256": "82c615356eee394c0e7a50d95513f12ab57701a1f64ef05160a5638c1e83cdf5"
+    },
+    {
+      "path": "src/App.tsx",
+      "size": 4829,
+      "sha256": "d4e115bc9afdf6a194dc8b6146c85ddf92e5de5759a2e1cf72cf8704205183ae"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "size": 326,
+      "sha256": "71fdda0f406c99e8b2317b881c5cdb0a52f0103d48a19313574ef0bdd949c7f9"
+    },
+    {
+      "path": "docs/FINAL_CRITIQUE.md",
+      "size": 567,
+      "sha256": "47b51745f2a678bf1f6885aac38dbc5ba977c026dd21a700ea141eefb5a70cd0"
+    },
+    {
+      "path": "src/data/placeholders.ts",
+      "size": 3841,
+      "sha256": "1213ac54e4d357086455950ce50610921b94ba5a322bf680a7178c41da734892"
+    },
+    {
+      "path": "src/styles/global.css",
+      "size": 7619,
+      "sha256": "6d553dea8c375e9345cb12bf6ea2d9498108a91cfe31313dab49aec5f23b4ba4"
+    },
+    {
+      "path": "src/lib/adapters/README.md",
+      "size": 346,
+      "sha256": "ac67e875b2ddaba07f989d728d469afb34587e63572f959db8f9042bc197e030"
+    },
+    {
+      "path": "WORKLOAD_REGISTER.md",
+      "size": 2890,
+      "sha256": "6e85ff90d81cf81e80bdf10378174acb65d05dee5528e5d1ea7a322e330f5ec8"
+    },
+    {
+      "path": "docs/KEX_BRAINK_AFFECT_ETHICS.md",
+      "size": 5416,
+      "sha256": "f07d28d122fe1760f3f0e7436008f03cccc98549385d1fa355b55a46be739c97"
+    },
+    {
+      "path": "src/lib/validators.ts",
+      "size": 2379,
+      "sha256": "694c715b415912546ac7a05bda16edfa31fde5c8601b6cfa85dc11804d77177b"
+    },
+    {
+      "path": "src/lib/validators.test.ts",
+      "size": 2547,
+      "sha256": "fe6f22c794dcf996ceec9c8b0599e33c341113591a86baa6f2439f6a664008f7"
+    },
+    {
+      "path": "package-lock.json",
+      "size": 73463,
+      "sha256": "1127d693d82fc043c253982db087617d55bf247dd3342c7a9c7f60038c4d9929"
+    },
+    {
+      "path": "docs/KEX_HYPERDRIVE_INSTANTIATION_RESEARCH.md",
+      "size": 3769,
+      "sha256": "baf41b116337a2494973eeb1023e430543b7f527da2437eef03ea56dc6a1c4b0"
+    },
+    {
+      "path": "src/data/inventorySeed.ts",
+      "size": 4267,
+      "sha256": "aabdb46968c6525851c6a0f91ed95c593d90db402bb4a8027d36af1f1a3295ae"
+    },
+    {
+      "path": "src/data/workloadSeed.ts",
+      "size": 5972,
+      "sha256": "4cb8bade0b00ef8f11cc70882e5d4ff08b9af30f8484a435d7adfd7cd72cea30"
+    },
+    {
+      "path": "src/lib/adapters/workloadAdapter.ts",
+      "size": 1752,
+      "sha256": "641ee9000fe2ade9db1e749dc08fe73ebb7b0582a71cecfd90db84c8a8964553"
+    },
+    {
+      "path": "src/lib/adapters/workloadAdapter.test.ts",
+      "size": 930,
+      "sha256": "4bdde9af65f11b85e71d6f1051c8c1a5f619caefa9cbbca933b58ce40c17074e"
+    },
+    {
+      "path": "src/components/InventoryPanel.tsx",
+      "size": 698,
+      "sha256": "b4d82df4e1ee28737498fa6f6b277a255f067cfc3e436307cafcff844cc3110e"
+    },
+    {
+      "path": "src/components/WorkloadPanel.tsx",
+      "size": 1491,
+      "sha256": "c7d3fd33bf5fb075cb4c66d86e670a262fde441410a8ca4ac0a0969300a16a37"
+    }
+  ],
+  "package_hash": "9d124e352ded6817f75ee22b91966cdb77587f61714768b44d27a39d1dbb7af2"
+}
