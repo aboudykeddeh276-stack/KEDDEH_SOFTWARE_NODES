@@ -1,0 +1,8 @@
+{
+  "schema":"braink.substrate-binding.v1",
+  "canonical_code":"aboudykeddeh276-stack/BRAINK:enterprise/market_services",
+  "role":"agent_and_service_node_registry",
+  "mount":"KEX://NODES/MARKET-SERVICES",
+  "owns":["agent_node_identity","service_node_identity","supervisor_node_identity","node_capability_registry"],
+  "does_not_own":["market_service_business_logic"]
+}
