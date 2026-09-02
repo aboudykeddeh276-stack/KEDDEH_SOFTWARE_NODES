@@ -1,0 +1,19 @@
+{
+  "schema":"keddeh.active-sector-nodes.r16/v1",
+  "activation_source":"aboudykeddeh276-stack/BRAINK/federation/R16/ACTIVE_SECTOR_BINDINGS_R16.json",
+  "dispatcher":"runtime://braink/sector-activation/r16",
+  "nodes":[
+    {"sector_id":"AI_CLOUD_INFRA","state":"ACTIVE_BOUND"},
+    {"sector_id":"CYBERSECURITY","state":"ACTIVE_BOUND"},
+    {"sector_id":"ENTERPRISE_AUTOMATION","state":"ACTIVE_BOUND"},
+    {"sector_id":"FINTECH_PAYMENTS","state":"ACTIVE_BOUND"},
+    {"sector_id":"HEALTHCARE","state":"ACTIVE_BOUND"},
+    {"sector_id":"LEGAL_REGTECH","state":"ACTIVE_BOUND"},
+    {"sector_id":"DATA_INFORMATION_GOVERNANCE","state":"ACTIVE_BOUND"},
+    {"sector_id":"SUPPLY_CHAIN_LOGISTICS","state":"ACTIVE_BOUND"},
+    {"sector_id":"MANUFACTURING_INDUSTRIAL","state":"ACTIVE_BOUND"},
+    {"sector_id":"ENERGY_UTILITIES","state":"ACTIVE_BOUND"},
+    {"sector_id":"COMMERCE_CUSTOMER_OPERATIONS","state":"ACTIVE_BOUND"},
+    {"sector_id":"GOVERNMENT_PUBLIC_ADMIN","state":"ACTIVE_BOUND"}
+  ]
+}
