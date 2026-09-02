@@ -1,0 +1,12 @@
+{
+  "schema":"braink.capability-supervisor-nodes.r2/v1",
+  "source":"aboudykeddeh276-stack/BRAINK:enterprise/market_services/sector_binding_runtime.py",
+  "nodes":[
+    {"capability":"telemetry","supervisor":"supervisor://capability/telemetry","groups":["research","runtime","verification","evolution","proof"],"affected_functions":30},
+    {"capability":"payments","supervisor":"supervisor://capability/payments","groups":["research","runtime","verification","evolution","proof"],"affected_functions":29},
+    {"capability":"erp","supervisor":"supervisor://capability/erp","groups":["research","runtime","verification","evolution","proof"],"affected_functions":26},
+    {"capability":"crm","supervisor":"supervisor://capability/crm","groups":["research","runtime","verification","evolution","proof"],"affected_functions":15}
+  ],
+  "supervision_rule":"Each capability supervisor is itself supervised by the BRAINK market-services runtime; worker interruption preserves VFS checkpoint and successor continuation.",
+  "continuation":"ADAPTER_CAPABILITY_CLOSURE"
+}
