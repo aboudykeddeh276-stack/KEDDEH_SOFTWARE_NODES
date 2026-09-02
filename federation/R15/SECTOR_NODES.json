@@ -1,0 +1,20 @@
+{
+  "schema":"keddeh.software-nodes.sector-federation/v1",
+  "federation_source":"aboudykeddeh276-stack/BRAINK/federation/R15/SECTOR_FEDERATION_REGISTER_R15.json",
+  "runtime":"runtime://braink/sector-federation",
+  "hr":"runtime://keddeh/hr-fabric",
+  "sector_nodes":[
+    {"sector_id":"AI_CLOUD_INFRA","runtime":"braink://sector/ai_cloud_infra"},
+    {"sector_id":"CYBERSECURITY","runtime":"braink://sector/cybersecurity"},
+    {"sector_id":"ENTERPRISE_AUTOMATION","runtime":"braink://sector/enterprise_automation"},
+    {"sector_id":"FINTECH_PAYMENTS","runtime":"braink://sector/fintech_payments"},
+    {"sector_id":"HEALTHCARE","runtime":"braink://sector/healthcare"},
+    {"sector_id":"LEGAL_REGTECH","runtime":"braink://sector/legal_regtech"},
+    {"sector_id":"DATA_INFORMATION_GOVERNANCE","runtime":"braink://sector/data_information_governance"},
+    {"sector_id":"SUPPLY_CHAIN_LOGISTICS","runtime":"braink://sector/supply_chain_logistics"},
+    {"sector_id":"MANUFACTURING_INDUSTRIAL","runtime":"braink://sector/manufacturing_industrial"},
+    {"sector_id":"ENERGY_UTILITIES","runtime":"braink://sector/energy_utilities"},
+    {"sector_id":"COMMERCE_CUSTOMER_OPERATIONS","runtime":"braink://sector/commerce_customer_operations"},
+    {"sector_id":"GOVERNMENT_PUBLIC_ADMIN","runtime":"braink://sector/government_public_admin"}
+  ]
+}
