@@ -1,0 +1,11 @@
+{
+  "schema":"braink.estate-dependency-binding.r32/v1",
+  "repository":"aboudykeddeh276-stack/KEDDEH_SOFTWARE_NODES",
+  "sector_role":"EDGE_IOT_NETWORK_NODE_CARRIER",
+  "authority_state":"CANONICAL_CANDIDATE_FOR_NODE_MECHANICS",
+  "owned_mechanics":["software-node identities","peer/gateway topology","node telemetry","runtime-node mechanics"],
+  "required_upstream":["BRAINK R28 resident-root/carrier-last verification","BRAINK R24 host trust boundary","SERVERS-KEDDEHSYSTEMS host/listener runtime","KEX addressing","GENERAL-GOVERNANCE- R32 gates"],
+  "invariants":["ENDPOINT_NE_NODE_IDENTITY","RESIDENT_ROOT_BEFORE_CARRIER_TRUST","FORGED_CARRIER_IDENTITY_MUST_FAIL","TRUST_BOUND_NE_PHYSICAL_VERIFIED"],
+  "promotion_requires":["tamper/forgery negative tests","peer failure/rejoin","resident-root digest verification","independent host evidence where physical node claimed"],
+  "status":"DEPENDENCY_BOUND_NOT_AUTHORITY_PROMOTED"
+}
