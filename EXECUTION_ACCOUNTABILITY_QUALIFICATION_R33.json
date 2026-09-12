@@ -1,0 +1,30 @@
+{
+  "schema": "keddeh.software-nodes.accountability.qualification.r33.v1",
+  "branch": "repair/node-transition-edge-r33",
+  "source_blobs": {
+    "active_sector_nodes_r16": "09b5769eb8033c41fef7b476d52f626e95072030",
+    "resident_node_binding_adapter": "494961663c95b4fc9026e8b91fc252e3969a9bd9",
+    "accountability_wrapper": "d5a9b98e1f35addeda63f4dbe58cc93cd8182669"
+  },
+  "execution": {
+    "exact_blob_match": true,
+    "python_compile": "PASS",
+    "accountable_node_id": "node://braink/function-rnd-engineering/qualification",
+    "sector_id": "ENTERPRISE_AUTOMATION",
+    "capability": "FUNCTION_RND_ENGINEERING",
+    "binding_status": "EDGE_BOUND",
+    "reported_state": "EDGE_BOUND",
+    "node_authority_mutated": false,
+    "wrong_target_rehashed_envelope": "REJECTED:ACCOUNTABILITY_TARGET_NOT_SOFTWARE_NODES"
+  },
+  "resident_binding_replaced": false,
+  "resident_binding": "federation/R33/node_binding_adapter.py",
+  "qualified_state": "ACCOUNTABLE_NODE_EDGE_BOUND_LOCALLY_EXECUTED",
+  "not_claimed": [
+    "transition propagated beyond EDGE_BOUND",
+    "downstream effect readback",
+    "host deployment",
+    "public deployment",
+    "production promotion"
+  ]
+}
