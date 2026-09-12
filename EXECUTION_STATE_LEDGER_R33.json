@@ -1,0 +1,20 @@
+{
+  "schema": "keddeh.software-nodes.execution-state-ledger.r33/v1",
+  "repository": "aboudykeddeh276-stack/KEDDEH_SOFTWARE_NODES",
+  "historical_workload_register": "WORKLOAD_REGISTER.md",
+  "historical_status_semantics": "artifact/work-product completion only unless independent execution evidence exists",
+  "states": {
+    "artifact_present": "OBSERVED",
+    "node_definitions_present": "OBSERVED",
+    "active_sector_bindings_declared": "OBSERVED",
+    "sector_runtime_implementation_present": "OBSERVED",
+    "capability_supervisor_nodes_present": "OBSERVED",
+    "r33_node_binding_implementation_present": "OBSERVED",
+    "r33_cross_repository_binding_executed": "UNOBSERVED_AT_COMMIT",
+    "transition_propagated": "UNOBSERVED_AT_COMMIT",
+    "effect_readback": "UNOBSERVED_AT_COMMIT",
+    "restart_rehydration": "UNOBSERVED_AT_COMMIT",
+    "external_or_production_promotion": "NOT_PROMOTED"
+  },
+  "claim_rule": "No state may be reported stronger than the strongest directly evidenced property."
+}
