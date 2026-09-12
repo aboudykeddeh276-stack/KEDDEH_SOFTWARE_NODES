@@ -1,0 +1,30 @@
+{
+  "schema": "keddeh.software-nodes.current-manifest.r33/v1",
+  "repository": "aboudykeddeh276-stack/KEDDEH_SOFTWARE_NODES",
+  "authority_state": "CANONICAL_CANDIDATE_FOR_NODE_MECHANICS",
+  "legacy_manifest": {
+    "path": "MANIFEST.json",
+    "identity": "KEX HyperDrive Dashboard UI",
+    "status": "PRESERVED_LEGACY_PROJECTION_MANIFEST",
+    "authority": false
+  },
+  "current_mechanics": {
+    "sector_federation": "federation/R15/SECTOR_NODES.json",
+    "active_sector_nodes": "federation/R16/ACTIVE_SECTOR_NODES_R16.json",
+    "sector_runtime": "braink_sector/sector_runtime.py",
+    "capability_supervisor_nodes": "market_services/R2/CAPABILITY_SUPERVISOR_NODES.json",
+    "r33_node_binding": "federation/R33/node_binding_adapter.py",
+    "transition_doctrine": "docs/TRANSITION_DEFINITION_DOCTRINE.md"
+  },
+  "current_assertions": {
+    "sector_nodes_declared": true,
+    "sector_nodes_active_bound_declared": true,
+    "sector_runtime_implementation_present": true,
+    "capability_supervisor_nodes_present": true,
+    "r33_node_binding_implementation_present": true,
+    "estate_wide_node_edge_readback": false,
+    "production_node_fabric_promoted": false
+  },
+  "preservation_rule": "Legacy UI/dashboard artifacts remain provenance and projection surfaces; they do not define current software-node execution authority.",
+  "completion_rule": "Artifact completion and executable edge completion are separate dimensions."
+}
