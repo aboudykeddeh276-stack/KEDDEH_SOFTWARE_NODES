@@ -1,0 +1,19 @@
+{
+  "schema": "kex.report03-r3.engineering-source-manifest.v1",
+  "engineering_source_root_sha256": "316c62a52ceeaa2d951221ab9197e1fd24ace49eed99a6e88c3d8aa349ad2ecf",
+  "scope": ["src/**","test/**","package.json"],
+  "files": [
+    {"path":"package.json","sha256":"39443408347da4758c296a612ba4981385b4791ca7a14b76532ce39a33f5e840","bytes":221},
+    {"path":"src/contract.mjs","sha256":"4080dc21bfb70ce6bea53ee518b195f4e0c28e9f07a77b07d634dc35da96cac8","bytes":2634},
+    {"path":"src/coordinate_directory.mjs","sha256":"75e4bad6188183ca06b260bc744b73b21f9faae11d6ec4c4ded732e97a08bf71","bytes":6707},
+    {"path":"src/durable_state.mjs","sha256":"c7c2e261179499f5ed92ad67449f4bcbe5753b35cc213b8aa3ebc2ae64ab4d94","bytes":3459},
+    {"path":"src/evidence_receipt.mjs","sha256":"7afe288f992089fa2eaf899cb6fa264398da4fa3966fbf622c07ef72c64d9bf0","bytes":2048},
+    {"path":"src/layer2_reconciler.mjs","sha256":"e042c8accbbf85d6b747463e53cea4f163b5430b7d3e420ea456f6f61a830830","bytes":6838},
+    {"path":"src/report03_control_plane.mjs","sha256":"b3bd362f5b02c3eb6560f642d8b13fd0cb10891fe73629b0bdfd7f9c6c23f1b6","bytes":2950},
+    {"path":"src/tot_safety_kernel.mjs","sha256":"931486d2716b3d3d16dcf7932a1d2a5b3e00fd4497819a6c0ea113f940f48073","bytes":4549},
+    {"path":"test/atomic_worker.mjs","sha256":"36a8ea3af18807742b18c74004d68327797161d0a0d83a5e792d3e21e498fea1","bytes":250},
+    {"path":"test/benchmark.mjs","sha256":"821dd2751ada252f82414e0f3204ffd75c367d879fe748a7fcda5e4838a045b6","bytes":1905},
+    {"path":"test/report03_r3.test.mjs","sha256":"c6828ea786849ab5ea32142abb62f764973aae47598204caf9784b9be6a16296","bytes":11372},
+    {"path":"test/stress.mjs","sha256":"366769f8cb241408b3496330e3d322c182cbb19fffca591d3d5deef47affe295","bytes":2732}
+  ]
+}
