@@ -1,0 +1,44 @@
+{
+  "schema": "kex.empirical-ground-truth-audit.v1",
+  "executed_at": "2026-09-21",
+  "source": {
+    "csv_path": "src/data/kex_control_sheet.csv",
+    "csv_blob_sha": "5fbed2484e93d37a11181f2d669f2bc9a34f5492",
+    "json_path": "src/data/kex_moment_ssd.json",
+    "json_blob_sha": "9b6caeb9c00bab3a2d2bb267d2a5925d979e7630"
+  },
+  "csv": {
+    "rows": 6,
+    "header_match": true,
+    "missing_cells": [],
+    "duplicate_addresses": [],
+    "status_counts": {
+      "PENDING": 6
+    },
+    "inferential_statistics": "NOT_JUSTIFIED: n=6 and fields are predominantly categorical/control metadata"
+  },
+  "substrate_json": {
+    "claim_boundary": "virtual sparse in-moment storage substrate, not physical SSD hardware",
+    "sectors": 26,
+    "links": 25,
+    "ledger_packets": 4,
+    "span_min": 25,
+    "span_max": 4217,
+    "span_mean": 1011,
+    "span_stddev_population": 1420.417,
+    "span_mismatches": [],
+    "offset_overlaps": [],
+    "offset_gaps": [],
+    "broken_links": [],
+    "sector_source_hash_mismatches": [],
+    "ledger_chain_errors": []
+  },
+  "falsification": {
+    "physical_ssd_capacity_proven": false,
+    "runtime_mount_proven": false,
+    "runtime_online_state_proven": false,
+    "packet_integrity_100_percent_proven": false,
+    "reason": "The checked-in files describe a virtual/static substrate and metadata; they do not provide live host/mount/socket readback."
+  },
+  "empirical_state": "STATIC_DATA_STRUCTURALLY_CONSISTENT"
+}
