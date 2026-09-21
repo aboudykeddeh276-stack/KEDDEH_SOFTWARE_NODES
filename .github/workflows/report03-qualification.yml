@@ -1,0 +1,31 @@
+name: Report 03 Engineering Qualification
+on:
+  pull_request:
+    paths:
+      - 'event_runner/**'
+      - '.github/workflows/report03-qualification.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'event_runner/**'
+      - '.github/workflows/report03-qualification.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax
+        run: |
+          node --check event_runner/src/tot_safety_kernel.mjs
+          node --check event_runner/src/coordinate_directory.mjs
+          node --check event_runner/src/layer2_reconciler.mjs
+      - name: Full event-runner suite with fault injection
+        working-directory: event_runner
+        run: npm test
