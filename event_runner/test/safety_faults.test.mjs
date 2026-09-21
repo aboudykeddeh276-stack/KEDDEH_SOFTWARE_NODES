@@ -68,6 +68,16 @@ test("ToT rejects monotonic sequence rollback even with new event id",()=>{
   assert.ok(denied.reasons.includes("SEQUENCE_ROLLBACK_REJECTED"));
 });
 
+test("ToT detects sequence gaps and requires resynchronization",()=>{
+  const k=new ToTSafetyKernel();
+  const first=signedEvent({event_id:"E10",sequence:10});
+  assert.equal(k.evaluate(first,safetyCtx()).decision,"ALLOW");
+  const gap=signedEvent({event_id:"E12",sequence:12});
+  const denied=k.evaluate(gap,safetyCtx());
+  assert.equal(denied.decision,"DENY");
+  assert.ok(denied.reasons.includes("SEQUENCE_GAP_DETECTED"));
+});
+
 test("ToT rejects signature forgery",()=>{
   const k=new ToTSafetyKernel(),ev={...signedEvent(),signature:"deadbeef"};
   assert.ok(k.evaluate(ev,safetyCtx()).reasons.includes("SIGNATURE_INVALID"));
@@ -114,6 +124,20 @@ test("directory quarantines concurrent writer conflict",()=>{
   b.upsert({node_id:"N1",health:"FAILED"});
   assert.throws(()=>a.merge(b.snapshot()),/CONCURRENT_CONFLICT/);
   assert.ok(a.conflicts().N1);
+});
+
+test("directory conflict resolution creates a record that dominates both histories",()=>{
+  const a=new CoordinateDirectory({writerId:"A"}),b=new CoordinateDirectory({writerId:"B"});
+  const ar=a.upsert({node_id:"N1",health:"READY"});
+  const br=b.upsert({node_id:"N1",health:"FAILED"});
+  assert.throws(()=>a.merge(b.snapshot()),/CONCURRENT_CONFLICT/);
+  const resolved=a.resolveConflict("N1",br.record_hash);
+  assert.equal(resolved.health,"FAILED");
+  assert.ok(resolved.vector.A>ar.vector.A);
+  assert.ok(resolved.vector.B>=br.vector.B);
+  assert.deepEqual(resolved.resolution_of.sort(),[ar.record_hash,br.record_hash].sort());
+  b.merge(a.snapshot());
+  assert.equal(b.get("N1").record_hash,resolved.record_hash);
 });
 
 test("directory detects equal-vector equivocation",()=>{
