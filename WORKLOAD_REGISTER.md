@@ -20,6 +20,8 @@ This register is updated as work is identified and completed.
 | WL-0012 | Dashboard workload source alignment | completed | KEX-DOC-WORKLOAD-0001 | src/data/workloadSeed.ts; src/lib/adapters/workloadAdapter.ts | Source workload queue mirrors the active register and supports status summaries. |
 | WL-0013 | Dashboard inventory/workload projection | completed | KEX-UI-HYPERDRIVE-0001 | src/components/InventoryPanel.tsx; src/components/WorkloadPanel.tsx; src/App.tsx; src/styles/global.css | UI renders inventory and workload proof state without autonomous/runtime overclaiming. |
 
+| WL-0014 | Report 03 full engineering closure and falsification | completed | KEX-REPORT03-ENGINEERING | event_runner/src; event_runner/test; event_runner/evidence; event_runner/REPORT_03_FULL_TECHNICAL.md | ToT safety kernel, distributed coordinate directory, Layer-2 reconciler, fault injection, evidence receipts, current standards comparison, causal deficiency analysis, and observed execution evidence are present without promoting unproven claims. |
+
 ## Update Rule
 
 When a new workload is identified, add it here before completing the work.
