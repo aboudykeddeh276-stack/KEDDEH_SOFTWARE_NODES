@@ -48,6 +48,17 @@ test("ToT durable replay rejection survives restart",()=>{
   assert.ok(denied.reasons.includes("REPLAY_REJECTED"));
 });
 
+test("ToT concurrent stale reader is denied rather than throwing",()=>{
+  const dir=tmp(),journal=path.join(dir,"race.json"),ev=signedEvent();
+  const k1=new ToTSafetyKernel({journalPath:journal});
+  const k2=new ToTSafetyKernel({journalPath:journal});
+  assert.equal(k1.evaluate(ev,safetyCtx()).decision,"ALLOW");
+  const second=k2.evaluate(ev,safetyCtx());
+  assert.equal(second.decision,"DENY");
+  assert.ok(second.reasons.includes("REPLAY_REJECTED"));
+  assert.equal(second.race_detected,true);
+});
+
 test("ToT rejects monotonic sequence rollback even with new event id",()=>{
   const k=new ToTSafetyKernel();
   const first=signedEvent({event_id:"E10",sequence:10});
