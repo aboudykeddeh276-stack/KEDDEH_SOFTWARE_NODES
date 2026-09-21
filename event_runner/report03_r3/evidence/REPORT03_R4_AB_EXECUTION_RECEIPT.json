@@ -1,0 +1,124 @@
+{
+  "schema": "kex.report03-r4.ab-symbolic-execution-receipt.v1",
+  "date": "2026-09-21",
+  "predecessor": "event_runner/report03_r3/REPORT_03_R3.md",
+  "architecture": {
+    "semantic_layer": "IL-LLM",
+    "translation_layer": "KEX",
+    "virtual_representation": "A1..A9/B1..B9 concepts",
+    "html_projection": "kex-ab-stream/kex-run custom-element vocabulary",
+    "binary_boundary": "packed only for CPU, memory bytes, network wire, file bytes, device IO, WASM or native ABI"
+  },
+  "github": {
+    "braink_codec_commit": "168139aac523c73993ab06375c7efea660c434db",
+    "braink_codec_test_commit": "92a47040d0d097032426b7c420ac2122a1e80912",
+    "mining_bridge_commit": "2fecc7e8c739d883f7632980d96e66e1ebd4c652",
+    "mining_bridge_boundary_commit": "437af841fe8b3833a592398e735f8ada9341868d",
+    "mining_translator_registration_commit": "c634aa54217327abe5fa5c6be66d2db61b1e0413",
+    "mining_bridge_test_commit": "d31b89ecaa6a2161e06d8b84cb6f00afba2388b3",
+    "mining_translator_test_commit": "6de7dc5916924f1872f1c83781ae1dbb8420e61f",
+    "app_runtime_commit": "ad7904f9cafa0be9790bd798a41119399b345b83",
+    "app_contract_commit": "9233c0580c83da1e2b7139e1b29714833f737eda",
+    "app_test_commit": "9d0875dbfee8b4f49e893bfdbd95ab0109bd3acb",
+    "app_html_commit": "7faa486882a07fb05de65cfb90886ce728ec0802",
+    "report03_codec_commit": "4bcff28295a3927255d002ddbf474f99de1f6b92",
+    "report03_codec_test_commit": "792ca10d841afd64ea197b715bf76fb41d0ba167"
+  },
+  "observed_execution": {
+    "app_js_runtime": {
+      "tests": 7,
+      "passed": 7,
+      "failed": 0,
+      "tokens": "A4B3A2",
+      "packed_bits_for_example": 15
+    },
+    "python_bridge": {
+      "tests": 10,
+      "passed": 10,
+      "failed": 0
+    },
+    "report03_ab_codec": {
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "duration_ms": 80.863694
+    },
+    "predecessor_report03": {
+      "tests": 17,
+      "passed": 17,
+      "repeated_suites": 20,
+      "aggregate_passes": 340,
+      "stress_atomic_increments": 1000,
+      "coordinate_conflicts_resolved": 100,
+      "l2_generations_applied": 100
+    }
+  },
+  "compression_conditions": {
+    "literal_ascii_token_bits_per_block": 16,
+    "packed_18_symbol_bits_per_block": 5,
+    "packed_18_break_even_average_source_bits_per_block": ">5",
+    "packed_18_best_case_ratio_at_run9": 0.555556,
+    "packed_18_best_case_reduction_percent": 44.4444,
+    "ab_pair_states": 81,
+    "ab_pair_bits_per_pair": 7,
+    "ab_pair_best_case_ratio_at_A9B9": 0.388889,
+    "ab_pair_best_case_reduction_percent": 61.1111,
+    "universal_compression_claim": "FALSIFIED",
+    "alternating_1010_case": "EXPANDS"
+  },
+  "observed_pattern_metrics": {
+    "run9x100": {
+      "raw_bits": 1800,
+      "packed18_bits": 1000,
+      "ratio": 0.555556
+    },
+    "run4x100": {
+      "raw_bits": 800,
+      "packed18_bits": 1000,
+      "ratio": 1.25
+    },
+    "alternating": {
+      "raw_bits": 1800,
+      "packed18_bits": 9000,
+      "ratio": 5
+    },
+    "random50_seed42": {
+      "raw_bits": 1800,
+      "packed18_bits": 4495,
+      "ratio": 2.497222
+    },
+    "bursty_transition_probability_0_1_seed42": {
+      "raw_bits": 1800,
+      "packed18_bits": 1420,
+      "ratio": 0.788889
+    }
+  },
+  "falsified": [
+    "execute_hex_compress is not reversible compression; it is a lossy deterministic folding/fingerprint primitive",
+    "ASCII A/B tokens are not raw-bit compression",
+    "A/B RLE does not compress high-transition or random binary universally",
+    "HTML projection does not itself reduce physical wire bytes unless represented by references/templates or separately encoded",
+    "virtual symbolic execution does not abolish physical binary representation in the host substrate"
+  ],
+  "advanced": [
+    "reversible canonical A/B run codec",
+    "IL-LLM semantic binding",
+    "KEX target-aware representation selection",
+    "HTML custom-element concept projection",
+    "5-bit 18-symbol boundary encoding",
+    "7-bit complete A/B pair encoding fast path",
+    "explicit symbolic-vs-binary substrate policy",
+    "Report03 falsification tests for compression/non-compression regimes"
+  ],
+  "unproven": [
+    "workload-wide compression advantage over DEFLATE/Brotli/zstd/EXI/CBOR",
+    "native virtual machine executing A/B concepts without conventional object/byte representation",
+    "end-to-end CPU/memory/network implementation using the boundary adapter",
+    "IL-LLM dictionary coverage sufficient to encode arbitrary program semantics",
+    "formal grammar proving semantic equivalence across all KEX translation paths",
+    "hardware acceleration for A/B concept execution",
+    "HTML DOM memory reduction versus compact native graph/node representation",
+    "production browser/network benchmarks"
+  ],
+  "status": "AB_SYMBOLIC_LAYER_EXECUTED_AND_FALSIFIED_WITH_BOUNDARY_CONDITIONS"
+}
