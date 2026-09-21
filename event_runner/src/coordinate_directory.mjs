@@ -114,6 +114,8 @@ export class CoordinateDirectory{
           remote_hash:r.record_hash,
           local_vector:local.vector,
           remote_vector:r.vector,
+          local_record:structuredClone(local),
+          remote_record:structuredClone(r),
           detected_at:new Date().toISOString()
         };
       }
@@ -125,13 +127,37 @@ export class CoordinateDirectory{
     return this.snapshot();
   }
   resolveConflict(node_id,chosenHash){
-    const conflict=this.state.conflicts?.[node_id];
-    if(!conflict)throw new Error("COORDINATE_CONFLICT_NOT_FOUND");
-    if(![conflict.local_hash,conflict.remote_hash].includes(chosenHash))throw new Error("COORDINATE_RESOLUTION_HASH_INVALID");
-    if(chosenHash===conflict.remote_hash)throw new Error("REMOTE_RECORD_REQUIRED_FOR_RESOLUTION");
-    delete this.state.conflicts[node_id];
-    this.state.directory_version++;
-    this._persist();
+    const mutate=state=>{
+      const conflict=state.conflicts?.[node_id];
+      if(!conflict)throw new Error("COORDINATE_CONFLICT_NOT_FOUND");
+      if(![conflict.local_hash,conflict.remote_hash].includes(chosenHash))throw new Error("COORDINATE_RESOLUTION_HASH_INVALID");
+      const chosen=chosenHash===conflict.local_hash?conflict.local_record:conflict.remote_record;
+      if(!chosen)throw new Error("COORDINATE_CONFLICT_CANDIDATE_MISSING");
+      const mergedVector={};
+      for(const key of new Set([...Object.keys(conflict.local_vector||{}),...Object.keys(conflict.remote_vector||{})])){
+        mergedVector[key]=Math.max(Number(conflict.local_vector?.[key]||0),Number(conflict.remote_vector?.[key]||0));
+      }
+      mergedVector[this.writerId]=Number(mergedVector[this.writerId]||0)+1;
+      const canonical={
+        node_id,
+        writer_id:this.writerId,
+        logical:chosen.logical??null,
+        runtime:chosen.runtime??null,
+        network:chosen.network??null,
+        capabilities:[...(chosen.capabilities||[])].sort(),
+        health:chosen.health||"UNKNOWN",
+        tombstone:Boolean(chosen.tombstone),
+        vector:mergedVector,
+        version:Math.max(Number(conflict.local_record?.version||0),Number(conflict.remote_record?.version||0))+1,
+        resolution_of:[conflict.local_hash,conflict.remote_hash].sort()
+      };
+      const resolved={...canonical,record_hash:sha256(canonical)};
+      state.records[node_id]=resolved;
+      delete state.conflicts[node_id];
+      state.directory_version=Number(state.directory_version||0)+1;
+      return state;
+    };
+    this.state=this.store?this.store.transaction(mutate):mutate(structuredClone(this.state));
     return this.state.records[node_id];
   }
 }
