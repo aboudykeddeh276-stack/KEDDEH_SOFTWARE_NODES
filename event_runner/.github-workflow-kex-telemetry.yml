@@ -1,0 +1,26 @@
+name: KEX Telemetry Runner
+on:
+  repository_dispatch:
+    types: [kex_telemetry_delta]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: kex-telemetry-${{ github.event.client_payload.node_id || github.run_id }}
+  cancel-in-progress: false
+jobs:
+  execute:
+    runs-on: [self-hosted, kex, telemetry]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Contract tests
+        working-directory: event_runner
+        run: npm test
+      - name: Execute canonical telemetry capability
+        env:
+          KEX_EVENT_JSON: ${{ toJson(github.event.client_payload) }}
+        run: |
+          node -e 'const e=JSON.parse(process.env.KEX_EVENT_JSON); if(e.command_ref!=="capability://kex/telemetry/apply") process.exit(2); console.log(JSON.stringify({status:"READBACK",event_id:e.event_id,input_hash:e.input_hash,node_id:e.node_id}))'
