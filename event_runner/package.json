@@ -1,1 +1,14 @@
-{"name":"kex-event-runner-bridge","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node --test test/*.test.mjs","start":"node src/dispatcher.mjs"},"engines":{"node":">=22"}}
+{
+  "name": "kex-event-runner-bridge",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "start": "node src/dispatcher.mjs",
+    "qualify": "node qualify_report03.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
