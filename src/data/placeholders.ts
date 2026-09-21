@@ -2,47 +2,99 @@ import type { ChatMessage, HyperNode, LedgerPacket, Metric, RouteNode, Sector, C
 import ssdData from "./kex_moment_ssd.json";
 import csvRaw from "./kex_control_sheet.csv?raw";
 
-const parsedCsv = csvRaw.trim().split("\n").slice(1).map((line: string) => line.split(","));
+function parseCsv(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let field = "";
+  let quoted = false;
 
-export const controlRows: ControlRow[] = parsedCsv.map((r: string[]) => ({
-  address: r[0] || "",
-  target: r[1] || "",
-  entryPoint: r[2] || "",
-  action: r[3] || "",
-  field: r[4] || "",
-  value: r[5] || "",
-  status: r[6] || ""
-}));
+  for (let i = 0; i < text.length; i += 1) {
+    const ch = text[i];
+    if (ch === '"') {
+      if (quoted && text[i + 1] === '"') {
+        field += '"';
+        i += 1;
+      } else {
+        quoted = !quoted;
+      }
+      continue;
+    }
+    if (ch === "," && !quoted) {
+      row.push(field);
+      field = "";
+      continue;
+    }
+    if ((ch === "\n" || ch === "\r") && !quoted) {
+      if (ch === "\r" && text[i + 1] === "\n") i += 1;
+      row.push(field);
+      field = "";
+      if (row.some((value) => value.length > 0)) rows.push(row);
+      row = [];
+      continue;
+    }
+    field += ch;
+  }
+
+  if (quoted) throw new Error("CONTROL_SHEET_CSV_UNCLOSED_QUOTE");
+  if (field.length || row.length) {
+    row.push(field);
+    if (row.some((value) => value.length > 0)) rows.push(row);
+  }
+  return rows;
+}
+
+const csvRows = parseCsv(csvRaw.trim());
+const headerRow = csvRows[0] ?? [];
+const expectedHeaders = ["ADDRESS", "TARGET_FOLDER", "ENTRY_POINT", "ACTION", "FIELD", "VALUE", "STATUS"];
+if (JSON.stringify(headerRow) !== JSON.stringify(expectedHeaders)) {
+  throw new Error(`CONTROL_SHEET_HEADER_MISMATCH:${headerRow.join("|")}`);
+}
+
+export const controlRows: ControlRow[] = csvRows.slice(1).map((r: string[], index: number) => {
+  if (r.length !== expectedHeaders.length) {
+    throw new Error(`CONTROL_SHEET_COLUMN_COUNT_INVALID:row=${index + 2}:count=${r.length}`);
+  }
+  return {
+    address: r[0],
+    target: r[1],
+    entryPoint: r[2],
+    action: r[3],
+    field: r[4],
+    value: r[5],
+    status: r[6]
+  };
+});
+
+const sectorEntries = Object.entries(ssdData.sectors);
+const numSectors = sectorEntries.length;
+const numLinks = ssdData.links.length;
+const numLedgerPackets = ssdData.ledger.length;
+const pendingRows = controlRows.filter((row) => row.status === "PENDING").length;
+const observedRows = controlRows.length;
 
 export const header = {
   title: "KEX HyperDrive Control Plane",
-  subtitle: "Front-facing dashboard for knowledge sheets, folder substrate entry points, nested SSDs, recursive hyper-computers, MUX display, host chat, and proof ledgers.",
-  kexCode: "[KEX_HYPER_DRIVE::10TB_SSD::1000TB_KSSD::fffaeb274e68]",
-  proofHash: "fffaeb274e68cde315a45b35d17903ddea85635903fecd15e21e693da8073cbd",
-  status: "BOOT: ACTIVE"
+  subtitle: "Static projection of the checked-in KEX control sheet and virtual substrate description.",
+  kexCode: ssdData.device,
+  proofHash: ssdData.source_sha256,
+  status: "STATIC DATASET LOADED"
 };
 
-const numSectors = Object.keys(ssdData.sectors).length;
-
 export const metrics: Metric[] = [
-  { label: "Outer Virtual SSD", value: "10 TB", foot: "sparse / 2.44B blocks" },
-  { label: "Nested KSSD", value: "1000 TB", foot: "nested / 244B blocks" },
-  { label: "Sector Hyper-Computers", value: numSectors.toString(), foot: "seed from SSD route" },
-  { label: "Packet Integrity", value: "100%", foot: "29d2d37169c874aca7bd3d..." }
+  { label: "Control Rows", value: observedRows.toString(), foot: "parsed from kex_control_sheet.csv" },
+  { label: "Pending Rows", value: pendingRows.toString(), foot: "status values observed in control sheet" },
+  { label: "Indexed Sectors", value: numSectors.toString(), foot: "entries in kex_moment_ssd.json" },
+  { label: "Indexed Links", value: numLinks.toString(), foot: "links in kex_moment_ssd.json" }
 ];
 
 export const hyperNodes: HyperNode[] = [
-  { title: "Knowledge Sheets", role: "Front-facing registry", status: "ready" },
-  { title: "KEX Router", role: "Query engine + watcher", status: "ready" },
-  { title: "Folder Substrate", role: "Literal runtime sector", status: "ready" },
-  { title: "SSD0", role: "Outer sparse storage (10TB)", status: "ready" },
-  { title: "Nested KSSD", role: "Storage inside storage (1000TB)", status: "ready" },
-  { title: "CPU Fabric", role: "Opposing execution lanes (X12)", status: "ready" },
-  { title: "GPU / MUX", role: "Runtime screen translator", status: "ready" },
-  { title: "Host Chat", role: "Bottom direct channel", status: "watch" }
+  { title: "Control Sheet", role: "Checked-in CSV input", status: "ready" },
+  { title: "Sector Index", role: "Checked-in JSON sector map", status: "ready" },
+  { title: "Ledger Records", role: `${numLedgerPackets} checked-in evidence records`, status: "ready" },
+  { title: "Runtime State", role: "No live runtime observation attached to this static module", status: "watch" }
 ];
 
-export const kexRoute: RouteNode[] = Object.values(ssdData.sectors).map((s: any, index: number) => ({
+export const kexRoute: RouteNode[] = Object.values(ssdData.sectors).map((s: any, index) => ({
   index: index + 1,
   name: s.marker,
   className: s.class,
@@ -50,34 +102,35 @@ export const kexRoute: RouteNode[] = Object.values(ssdData.sectors).map((s: any,
 }));
 
 export const sectors: Sector[] = controlRows.map((r, i) => ({
-  id: `HEX-00${i + 1}`,
+  id: `ROW-${String(i + 1).padStart(3, "0")}`,
   address: r.address,
   role: r.target,
   state: r.status
 }));
 
 export const muxLines = [
-  "KEX MUX SCREEN // VIRTUAL SUBSYSTEM",
+  "KEX DATASET PROJECTION",
   "------------------------------------------------------------",
-  `DEVICE: ${ssdData.device}`,
-  `PACKET_HASH: 29d2d37169c874aca7bd3d445f0dc21bb1c927283c798f3a7f43a9060ade0eff`,
-  `SUBSTRATE_HASH: ca47755528de6b3f3361a91dfe4dadf03d1d19bda265d4d59baea2fcea693e8e`,
-  `HYPERDRIVE_HASH: fffaeb274e68cde315a45b35d17903ddea85635903fecd15e21e693da8073cbd`,
-  `SECTORS_MOUNTED: ${numSectors}`,
+  `DEVICE_LABEL: ${ssdData.device}`,
+  `CLAIM_BOUNDARY: ${ssdData.claim_boundary}`,
+  `SOURCE_SHA256: ${ssdData.source_sha256}`,
+  `SECTORS_INDEXED: ${numSectors}`,
+  `LINKS_INDEXED: ${numLinks}`,
+  `LEDGER_RECORDS: ${numLedgerPackets}`,
   "",
-  ...Object.keys(ssdData.concept).map(k => `CONCEPT [${k.toUpperCase()}]: ${(ssdData.concept as any)[k]}`),
+  ...Object.keys(ssdData.concept).map((k) => `CONCEPT [${k.toUpperCase()}]: ${(ssdData.concept as any)[k]}`),
   "",
-  "SYSTEM ONLINE. FOLDER SUBSTRATE ACTIVE."
+  "STATIC DATA LOADED. NO LIVE MOUNT, CAPACITY, OR ONLINE-STATE CLAIM IS MADE HERE."
 ];
 
 export const hostMessages: ChatMessage[] = [
-  { actor: "system", time: "00:00", text: "Host bridge ready. Loading physical substrate..." },
-  { actor: "system", time: "00:01", text: "Mounted 10TB Outer SSD + 1000TB Nested KSSD." },
-  { actor: "system", time: "00:02", text: "Substrate ledger preflight verified: ca477555..." }
+  { actor: "system", time: "data", text: `Loaded ${observedRows} control-sheet rows from the checked-in CSV.` },
+  { actor: "system", time: "data", text: `Loaded ${numSectors} sector descriptions and ${numLinks} links from the checked-in JSON.` },
+  { actor: "system", time: "data", text: `Claim boundary: ${ssdData.claim_boundary}` }
 ];
 
-export const ledgerPackets: LedgerPacket[] = [
-  { id: "0001", action: "BOOT_DASHBOARD", hash: "29d2d37169c874aca7bd3d445f0dc21bb1c927283c798f3a7f43a9060ade0eff" },
-  { id: "0002", action: "MOUNT_FOLDER_SUBSTRATE", hash: "ca47755528de6b3f3361a91dfe4dadf03d1d19bda265d4d59baea2fcea693e8e" },
-  { id: "0003", action: "MOUNT_HYPER_DRIVE", hash: "fffaeb274e68cde315a45b35d17903ddea85635903fecd15e21e693da8073cbd" }
-];
+export const ledgerPackets: LedgerPacket[] = ssdData.ledger.map((packet: any) => ({
+  id: String(packet.packet_id).padStart(4, "0"),
+  action: packet.action,
+  hash: packet.packet_hash
+}));
