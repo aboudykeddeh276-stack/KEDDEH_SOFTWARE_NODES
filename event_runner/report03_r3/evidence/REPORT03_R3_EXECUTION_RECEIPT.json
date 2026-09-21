@@ -1,28 +1,134 @@
 {
-  "schema":"kex.report03-r3.execution-receipt.v1",
-  "run_id":"REPORT03-R3-LOCAL-20260921",
-  "built_against_repository":"aboudykeddeh276-stack/KEDDEH_SOFTWARE_NODES",
-  "observed_repository_head_before_r3_deploy":"2f0621bd031213c21187383a27ad493f43cfad2f",
-  "runtime":{"node":"v22.16.0","python":"3.13.5","execution_surface":"local container filesystem/processes"},
-  "source":{"engineering_source_root_sha256":"316c62a52ceeaa2d951221ab9197e1fd24ace49eed99a6e88c3d8aa349ad2ecf","manifest":"evidence/SOURCE_MANIFEST_R3.json"},
-  "qualification":{
-    "single_full_suite":{"tests":17,"passed":17,"failed":0,"observed_duration_ms":292.311346},
-    "repeated_full_suite":{"runs":20,"aggregate_test_passes":340,"aggregate_failures":0},
-    "stress":{"cross_process_atomic_increments":1000,"coordinate_conflicts_detected_and_resolved":100,"layer2_generations_applied":100,"stale_generation_rejected":true,"status":"PASS"}
+  "schema": "kex.report03-r3.execution-receipt.v1",
+  "run_id": "REPORT03-R3-LOCAL-20260921",
+  "built_against_repository": "aboudykeddeh276-stack/KEDDEH_SOFTWARE_NODES",
+  "observed_repository_head_before_r3_deploy": "2f0621bd031213c21187383a27ad493f43cfad2f",
+  "runtime": {
+    "node": "v22.16.0",
+    "python": "3.13.5",
+    "execution_surface": "local container filesystem/processes"
   },
-  "fault_injection":{
-    "live_stale_lock_theft_prevented":"PASS","dead_stale_lock_recovered":"PASS","policy_hash_downgrade_rejected":"PASS","unknown_or_rotated_key_rejected":"PASS","replay_after_restart_rejected":"PASS","sequence_rollback_after_restart_rejected":"PASS","signature_forgery_rejected":"PASS","expired_event_rejected":"PASS","clock_window_violation_rejected":"PASS","capability_violation_rejected":"PASS","non_ready_node_rejected":"PASS","coordinate_signature_tamper_rejected":"PASS","concurrent_coordinate_conflict_retained":"PASS","remote_conflict_branch_resolved_to_dominating_descendant":"PASS","stale_coordinate_compare_and_set_rejected":"PASS","stale_reconcile_generation_rejected":"PASS","same_generation_equivocation_rejected":"PASS","idempotency_survives_reconciler_restart":"PASS","idempotent_replay_revalidates_readback":"PASS","readback_divergence_falsifies_adapter_success":"PASS","rollback_readback_verified":"PASS","permanent_adapter_failure_not_promoted":"PASS","safety_denial_prevents_apply":"PASS","evidence_chain_tamper_detected":"PASS","signed_evidence_head_substitution_rejected":"PASS"
+  "source": {
+    "engineering_source_root_sha256": "316c62a52ceeaa2d951221ab9197e1fd24ace49eed99a6e88c3d8aa349ad2ecf",
+    "manifest": "evidence/SOURCE_MANIFEST_R3.json"
   },
-  "benchmark":{
-    "100":{"tot_ops_per_sec":14591.0,"coordinate_upsert_ops_per_sec":7737.4,"reconcile_nodes_per_sec":11348.1},
-    "500":{"tot_ops_per_sec":24816.5,"coordinate_upsert_ops_per_sec":1837.5,"reconcile_nodes_per_sec":44452.1},
-    "1000":{"tot_ops_per_sec":23477.8,"coordinate_upsert_ops_per_sec":952.0,"reconcile_nodes_per_sec":71021.2},
-    "2000":{"tot_ops_per_sec":31758.4,"coordinate_upsert_ops_per_sec":457.3,"reconcile_nodes_per_sec":113585.7},
-    "3000":{"tot_ops_per_sec":35202.6,"coordinate_upsert_ops_per_sec":299.1,"reconcile_nodes_per_sec":137129.2},
-    "10000_coordinate_run":"TIMED_OUT_OVER_30_SECONDS",
-    "interpretation":"CoordinateDirectory uses monolithic state cloning/snapshot persistence and therefore shows superlinear degradation; this is an observed architecture deficiency, not a production scalability proof."
+  "qualification": {
+    "single_full_suite": {
+      "tests": 17,
+      "passed": 17,
+      "failed": 0,
+      "observed_duration_ms": 292.311346
+    },
+    "repeated_full_suite": {
+      "runs": 20,
+      "aggregate_test_passes": 340,
+      "aggregate_failures": 0
+    },
+    "stress": {
+      "cross_process_atomic_increments": 1000,
+      "coordinate_conflicts_detected_and_resolved": 100,
+      "layer2_generations_applied": 100,
+      "stale_generation_rejected": true,
+      "status": "PASS"
+    }
   },
-  "advanced":["policy-and-key-bound ToT admission","process-safe lock ownership with live-PID stale-lock protection","signed coordinate records","retained concurrent branches and executable conflict resolution","durable generation fencing","durable idempotency journal with readback revalidation","proof-checked rollback/readback receipts","hash-chained evidence with separable HMAC head seal","integrated control plane"],
-  "unproven":["multi-host partition convergence","authenticated network transport between coordinate replicas","membership and failure detection","automatic anti-entropy/gossip","strong-consistency consensus if required by application semantics","physical host identity and hardware attestation","external replicated durability","independent evidence timestamp/transparency anchoring","production runner admission and isolation","production availability/SLOs","RFC 8785 conformance","RFC 9421 conformance","NIST zero-trust conformance","high-cardinality coordinate-directory scalability"],
-  "status":"LOCAL_ENGINEERING_ADVANCED_AND_FALSIFIED_WITH_EXPLICIT_DISTRIBUTED_BOUNDARIES"
+  "fault_injection": {
+    "live_stale_lock_theft_prevented": "PASS",
+    "dead_stale_lock_recovered": "PASS",
+    "policy_hash_downgrade_rejected": "PASS",
+    "unknown_or_rotated_key_rejected": "PASS",
+    "replay_after_restart_rejected": "PASS",
+    "sequence_rollback_after_restart_rejected": "PASS",
+    "signature_forgery_rejected": "PASS",
+    "expired_event_rejected": "PASS",
+    "clock_window_violation_rejected": "PASS",
+    "capability_violation_rejected": "PASS",
+    "non_ready_node_rejected": "PASS",
+    "coordinate_signature_tamper_rejected": "PASS",
+    "concurrent_coordinate_conflict_retained": "PASS",
+    "remote_conflict_branch_resolved_to_dominating_descendant": "PASS",
+    "stale_coordinate_compare_and_set_rejected": "PASS",
+    "stale_reconcile_generation_rejected": "PASS",
+    "same_generation_equivocation_rejected": "PASS",
+    "idempotency_survives_reconciler_restart": "PASS",
+    "idempotent_replay_revalidates_readback": "PASS",
+    "readback_divergence_falsifies_adapter_success": "PASS",
+    "rollback_readback_verified": "PASS",
+    "permanent_adapter_failure_not_promoted": "PASS",
+    "safety_denial_prevents_apply": "PASS",
+    "evidence_chain_tamper_detected": "PASS",
+    "signed_evidence_head_substitution_rejected": "PASS"
+  },
+  "benchmark": {
+    "100": {
+      "tot_ops_per_sec": 14591,
+      "coordinate_upsert_ops_per_sec": 7737.4,
+      "reconcile_nodes_per_sec": 11348.1
+    },
+    "500": {
+      "tot_ops_per_sec": 24816.5,
+      "coordinate_upsert_ops_per_sec": 1837.5,
+      "reconcile_nodes_per_sec": 44452.1
+    },
+    "1000": {
+      "tot_ops_per_sec": 23477.8,
+      "coordinate_upsert_ops_per_sec": 952,
+      "reconcile_nodes_per_sec": 71021.2
+    },
+    "2000": {
+      "tot_ops_per_sec": 31758.4,
+      "coordinate_upsert_ops_per_sec": 457.3,
+      "reconcile_nodes_per_sec": 113585.7
+    },
+    "3000": {
+      "tot_ops_per_sec": 35202.6,
+      "coordinate_upsert_ops_per_sec": 299.1,
+      "reconcile_nodes_per_sec": 137129.2
+    },
+    "10000_coordinate_run": "TIMED_OUT_OVER_30_SECONDS",
+    "interpretation": "CoordinateDirectory uses monolithic state cloning/snapshot persistence and therefore shows superlinear degradation; this is an observed architecture deficiency, not a production scalability proof."
+  },
+  "advanced": [
+    "policy-and-key-bound ToT admission",
+    "process-safe lock ownership with live-PID stale-lock protection",
+    "signed coordinate records",
+    "retained concurrent branches and executable conflict resolution",
+    "durable generation fencing",
+    "durable idempotency journal with readback revalidation",
+    "proof-checked rollback/readback receipts",
+    "hash-chained evidence with separable HMAC head seal",
+    "integrated control plane"
+  ],
+  "unproven": [
+    "multi-host partition convergence",
+    "authenticated network transport between coordinate replicas",
+    "membership and failure detection",
+    "automatic anti-entropy/gossip",
+    "strong-consistency consensus if required by application semantics",
+    "physical host identity and hardware attestation",
+    "external replicated durability",
+    "independent evidence timestamp/transparency anchoring",
+    "production runner admission and isolation",
+    "production availability/SLOs",
+    "RFC 8785 conformance",
+    "RFC 9421 conformance",
+    "NIST zero-trust conformance",
+    "high-cardinality coordinate-directory scalability",
+    "GitHub runner startup/execution for this exact R3 branch"
+  ],
+  "status": "LOCAL_ENGINEERING_ADVANCED_AND_FALSIFIED_WITH_EXPLICIT_DISTRIBUTED_BOUNDARIES",
+  "github_qualification": {
+    "pr": 5,
+    "head_sha": "7db3433963c9fe5d135405cfd4bad386aa2c002b",
+    "r3_workflow_run_id": 35584964050,
+    "r3_workflow_conclusion": "failure",
+    "r3_job_id": 106286054836,
+    "r3_steps_observed": 0,
+    "existing_report03_run_id": 35584963938,
+    "existing_report03_conclusion": "failure",
+    "existing_job_id": 106286054522,
+    "existing_steps_observed": 0,
+    "classification": "RUNNER_EXECUTION_NOT_OBSERVED",
+    "claim_boundary": "No GitHub-CI PASS claim; no test step executed."
+  }
 }
