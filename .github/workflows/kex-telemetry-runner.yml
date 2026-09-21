@@ -12,16 +12,25 @@ jobs:
   execute:
     runs-on: [self-hosted, kex, telemetry]
     timeout-minutes: 10
+    env:
+      KEX_NODE_STATE: READY
+      KEX_INGRESS_AUTHORITY_ID: sheet-ingress
+      KEX_EVENT_SIGNING_SECRET: ${{ secrets.KEX_EVENT_SIGNING_SECRET }}
+      KEX_RUNNER_SAFETY_STATE_PATH: ${{ runner.temp }}/../kex-state/runner-tot-safety.json
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Contract tests
+      - name: Contract and fault-injection tests
         working-directory: event_runner
         run: npm test
-      - name: Validate canonical dispatch
+      - name: Runner-side safety validation
+        env:
+          KEX_EVENT_JSON: ${{ toJson(github.event.client_payload) }}
+        run: node event_runner/runner/validate_event.mjs
+      - name: Execute canonical telemetry capability
         env:
           KEX_EVENT_JSON: ${{ toJson(github.event.client_payload) }}
         run: |
-          node -e 'const e=JSON.parse(process.env.KEX_EVENT_JSON); if(e.command_ref!=="capability://kex/telemetry/apply") process.exit(2); console.log(JSON.stringify({status:"READBACK",event_id:e.event_id,input_hash:e.input_hash,node_id:e.node_id}))'
+          node -e 'const e=JSON.parse(process.env.KEX_EVENT_JSON); console.log(JSON.stringify({status:"READBACK",event_id:e.event_id,sequence:e.sequence,input_hash:e.input_hash,node_id:e.node_id,command_ref:e.command_ref}))'
