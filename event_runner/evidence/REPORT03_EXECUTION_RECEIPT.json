@@ -1,0 +1,38 @@
+{
+  "schema": "kex.report03.evidence.v1",
+  "run_id": "REPORT03-LOCAL-QUALIFICATION-20260921",
+  "execution": {
+    "runtime": "Node.js",
+    "suite": "node --test test/*.test.mjs",
+    "tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "duration_ms_observed": 69.187373
+  },
+  "fault_injection": {
+    "replay_rejected": "PASS",
+    "hash_mismatch_rejected": "PASS",
+    "clock_window_rejected": "PASS",
+    "stale_coordinate_write_rejected": "PASS",
+    "equal_version_equivocation_rejected": "PASS",
+    "transient_adapter_failure_retried": "PASS",
+    "permanent_adapter_failure_contained": "PASS"
+  },
+  "positive_evidence": {
+    "authorized_event_allowed": "PASS",
+    "deterministic_classification": "PASS",
+    "canonical_capability_dispatch": "PASS",
+    "deterministic_reconcile_plan": "PASS",
+    "readback_receipt_after_retry": "PASS"
+  },
+  "boundaries": [
+    "NO_MULTI_HOST_PARTITION_TEST",
+    "NO_BYZANTINE_CONSENSUS_CLAIM",
+    "NO_PHYSICAL_HOST_IDENTITY_PROOF",
+    "NO_LIVE_GITHUB_SELF_HOSTED_RUNNER_ADMISSION",
+    "NO_LIVE_GOOGLE_SHEET_TRIGGER_EXECUTION",
+    "NO_PRODUCTION_AVAILABILITY_CLAIM",
+    "NO_RFC8785_CONFORMANCE_CLAIM"
+  ],
+  "status": "LOCAL_EXECUTION_AND_FAULT_INJECTION_PASS"
+}
