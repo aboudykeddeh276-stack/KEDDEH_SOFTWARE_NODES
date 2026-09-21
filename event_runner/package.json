@@ -1,0 +1,1 @@
+{"name":"kex-event-runner-bridge","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node --test test/*.test.mjs","start":"node src/dispatcher.mjs"},"engines":{"node":">=22"}}
