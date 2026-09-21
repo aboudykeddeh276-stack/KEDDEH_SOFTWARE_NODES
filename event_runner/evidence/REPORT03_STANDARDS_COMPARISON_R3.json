@@ -1,0 +1,69 @@
+{
+  "schema": "kex.report03.standards-comparison.r3",
+  "generated_at": "2026-09-21T18:50:00+09:30",
+  "comparisons": [
+    {
+      "standard": "NIST SP 800-207",
+      "area": "zero-trust policy decision/enforcement",
+      "implemented": "Explicit ToT decision before dispatch plus runner-side enforcement; network location alone grants nothing.",
+      "status": "DIRECTIONAL_ALIGNMENT_ONLY",
+      "gap": "No full PDP/PEP policy service, identity trust engine, continuous enterprise policy context or conformance assessment."
+    },
+    {
+      "standard": "RFC 8342 NMDA",
+      "area": "intended vs operational state",
+      "implemented": "Layer-2 reconciler explicitly separates desired state from observed readback and refuses promotion on divergence.",
+      "status": "ARCHITECTURAL_ALIGNMENT_ONLY",
+      "gap": "No YANG-backed running/intended/operational datastore, validation engine or protocol-neutral NMDA datastore service."
+    },
+    {
+      "standard": "RFC 8345",
+      "area": "network topology model",
+      "implemented": "Coordinate directory represents nodes plus logical/runtime/network coordinates and capabilities.",
+      "status": "PARTIAL_CONCEPTUAL_ALIGNMENT",
+      "gap": "No YANG network/topology schema, links/termination points/supporting underlays or technology-specific augmentations."
+    },
+    {
+      "standard": "RFC 6241 NETCONF",
+      "area": "transaction/locking/confirmed commit",
+      "implemented": "Layer-2 supports deterministic plans, bounded apply, readback verification and local adapter rollback.",
+      "status": "PATTERN_ALIGNMENT_ONLY",
+      "gap": "No NETCONF client/server, candidate datastore, lock/fencing semantics, confirmed-commit timeout or multi-device transaction coordinator."
+    },
+    {
+      "standard": "RFC 8785 JCS",
+      "area": "canonical JSON for cryptographic hashing",
+      "implemented": "Recursive key sorting and JSON serialization before SHA-256.",
+      "status": "NOT_CONFORMANT",
+      "gap": "No I-JSON validation or complete RFC 8785 ECMAScript primitive/number/string canonicalization conformance vectors."
+    },
+    {
+      "standard": "RFC 9421",
+      "area": "HTTP message signatures",
+      "implemented": "Internal event envelope uses HMAC-SHA256 over selected classified event fields.",
+      "status": "NOT_CONFORMANT",
+      "gap": "No Signature-Input/Signature fields, HTTP component coverage, Content-Digest binding, key identifier/algorithm metadata or RFC 9421 canonical signature base."
+    },
+    {
+      "standard": "RFC 8641 YANG-Push",
+      "area": "update completeness/resynchronization",
+      "implemented": "Monotonic sequence and explicit sequence-gap rejection now detect missing events after a baseline.",
+      "status": "PARTIAL_BEHAVIORAL_ALIGNMENT",
+      "gap": "No subscription protocol, incomplete-update signal, full datastore resync snapshot exchange or subscription lifecycle."
+    },
+    {
+      "standard": "GitHub self-hosted runner guidance",
+      "area": "runner isolation and autoscaling",
+      "implemented": "Runner-side validation and persistent safety journal exist; workflow targets self-hosted kex/telemetry labels.",
+      "status": "PRODUCTION_GAP",
+      "gap": "Repository is public, runner architecture is persistent, no observed runner job execution, no ephemeral/JIT provisioning, runner groups, external runner logs or clean-image lifecycle."
+    },
+    {
+      "standard": "Kubernetes controller pattern",
+      "area": "desired/current reconciliation",
+      "implemented": "Deterministic desired-vs-observed plan/apply/readback loop.",
+      "status": "PATTERN_ALIGNMENT_ONLY",
+      "gap": "No Kubernetes API machinery, resourceVersion/watch queue, leader election, declarative CRDs or controller-runtime semantics."
+    }
+  ]
+}
