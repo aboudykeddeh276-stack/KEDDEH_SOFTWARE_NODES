@@ -67,19 +67,26 @@ export class ToTSafetyKernel{
       capability
     };
     if(this.store){
-      this.store.transaction(state=>{
-        const key=replayKey;
-        if(state.seen?.[key])throw new Error("REPLAY_REJECTED_RACE");
-        const max=Number(state.max_sequence?.[authority]||0);
-        if(seq<=max)throw new Error("SEQUENCE_ROLLBACK_REJECTED_RACE");
-        state.seen=state.seen||{};
-        state.max_sequence=state.max_sequence||{};
-        state.seen[key]=accepted;
-        state.max_sequence[authority]=seq;
-        state.decisions=Number(state.decisions||0)+1;
-        trimSeen(state,this.maxReplay);
-        return state;
-      });
+      try{
+        this.store.transaction(state=>{
+          const key=replayKey;
+          if(state.seen?.[key])throw new Error("REPLAY_REJECTED_RACE");
+          const max=Number(state.max_sequence?.[authority]||0);
+          if(seq<=max)throw new Error("SEQUENCE_ROLLBACK_REJECTED_RACE");
+          state.seen=state.seen||{};
+          state.max_sequence=state.max_sequence||{};
+          state.seen[key]=accepted;
+          state.max_sequence[authority]=seq;
+          state.decisions=Number(state.decisions||0)+1;
+          trimSeen(state,this.maxReplay);
+          return state;
+        });
+      }catch(err){
+        const token=String(err.message||err);
+        if(token.includes("REPLAY_REJECTED_RACE"))return {decision:"DENY",reasons:["REPLAY_REJECTED"],event_id:event.event_id,authority_id:authority,sequence:seq,race_detected:true};
+        if(token.includes("SEQUENCE_ROLLBACK_REJECTED_RACE"))return {decision:"DENY",reasons:["SEQUENCE_ROLLBACK_REJECTED"],event_id:event.event_id,authority_id:authority,sequence:seq,race_detected:true};
+        throw err;
+      }
     }
     this.seen.set(replayKey,accepted);
     this.maxSequence.set(authority,seq);
