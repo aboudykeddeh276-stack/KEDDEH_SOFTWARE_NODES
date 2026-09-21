@@ -1,0 +1,226 @@
+{
+  "schema": "kex.report03.deficiency-matrix.r3",
+  "generated_at": "2026-09-21T18:50:00+09:30",
+  "evidence_rule": "A deficiency remains UNPROVEN until its required external or distributed observation exists; implemented code is not promoted into operational fact.",
+  "items": [
+    {
+      "id": "D01",
+      "subject": "Multi-host coordinate convergence under partition/rejoin",
+      "state": "UNPROVEN",
+      "why_unproven": "All executed coordinate-directory tests ran inside one Linux process environment using in-memory peers or local files. No two admitted physical hosts exchanged snapshots across an actual network partition and rejoin.",
+      "why_cause_unaddressed": "The code exposes merge(snapshot) but there is no resident peer membership, authenticated coordinate-sync transport, anti-entropy scheduler or per-peer checkpoint service that would cause snapshots to move between machines.",
+      "why_concept_remains": "Vector clocks and conflict resolution are meaningful distributed primitives only after independently evolving replicas exchange state. Local simulation proves algorithms, not network convergence.",
+      "missing_architecture": [
+        "authenticated peer membership service",
+        "mTLS or equivalently authenticated peer transport",
+        "anti-entropy/gossip/snapshot exchange daemon",
+        "per-peer durable sync cursor/checkpoint",
+        "partition/rejoin fault harness across at least two hosts",
+        "failure detector and peer freshness model",
+        "operator-visible conflict/resolution receipts"
+      ]
+    },
+    {
+      "id": "D02",
+      "subject": "Crash-fault or Byzantine consensus",
+      "state": "NOT_IMPLEMENTED_NOT_CLAIMED",
+      "why_unproven": "The directory detects concurrent histories but does not elect a leader, form a quorum, replicate an ordered log or decide a single value under failures.",
+      "why_cause_unaddressed": "The requested layer was a non-consensus distributed coordinate directory and reconciler. No consensus protocol, quorum membership or replicated log has been introduced.",
+      "why_concept_remains": "Conflict detection/resolution cannot substitute for consensus where a globally ordered authoritative decision is required.",
+      "missing_architecture": [
+        "explicit decision whether crash-fault consensus is required",
+        "Raft/Paxos-style replicated log if crash faults are the target",
+        "BFT protocol only if Byzantine tolerance is actually required",
+        "membership and reconfiguration protocol",
+        "term/epoch fencing",
+        "snapshot/log compaction",
+        "quorum storage and recovery tests",
+        "per-node cryptographic identity if adversarial nodes are in scope"
+      ]
+    },
+    {
+      "id": "D03",
+      "subject": "Distributed durability and serialization",
+      "state": "PARTIAL_LOCAL_ONLY",
+      "why_unproven": "AtomicJsonStore uses local lock files, fsync, atomic rename and local directory fsync. Those operations do not serialize writers on different hosts and their guarantees depend on the backing filesystem.",
+      "why_cause_unaddressed": "There is no distributed lock/lease service, fencing token service or replicated datastore under the control plane.",
+      "why_concept_remains": "Two machines can independently believe they hold authority over different local copies unless a shared ordering/fencing architecture exists.",
+      "missing_architecture": [
+        "replicated durable state store or consensus-backed metadata service",
+        "lease/fencing token semantics",
+        "crash recovery journal",
+        "filesystem/disk failure testing",
+        "backup/restore and corruption recovery procedure"
+      ]
+    },
+    {
+      "id": "D04",
+      "subject": "Standards-based network management datastore and device actuation",
+      "state": "ABSENT",
+      "why_unproven": "Layer-2 uses a generic JavaScript adapter interface. No live router, switch, Linux network namespace, FRR daemon or appliance was changed and read back through a standardized management protocol.",
+      "why_cause_unaddressed": "No NETCONF, RESTCONF, gNMI or direct FRR/Linux adapter is present in this event_runner layer, and there is no YANG/NMDA datastore service.",
+      "why_concept_remains": "A reconciler without concrete actuators can prove controller semantics but cannot prove real network configuration convergence.",
+      "missing_architecture": [
+        "YANG models for desired and operational Keddeh network state",
+        "NMDA-style intended/operational datastore",
+        "NETCONF and/or RESTCONF/gNMI client adapter",
+        "device capability discovery",
+        "candidate/lock/confirmed-commit mapping where supported",
+        "multi-device transaction/rollback coordinator",
+        "vendor/device normalization layer",
+        "live readback parsers and reconciliation receipts"
+      ]
+    },
+    {
+      "id": "D05",
+      "subject": "HTTP ingress cryptographic identity",
+      "state": "PARTIAL_PROPRIETARY",
+      "why_unproven": "The ingress uses an X-KEX-Secret shared secret and the dispatcher signs an internal event envelope with HMAC. It does not sign the received HTTP request according to RFC 9421.",
+      "why_cause_unaddressed": "There is no HTTP Message Signatures implementation, Content-Digest binding, signer key registry, asymmetric identity or rotation protocol in this layer.",
+      "why_concept_remains": "The internal HMAC establishes possession of a shared key after classification, but does not provide standards-based end-to-end integrity over selected HTTP message components.",
+      "missing_architecture": [
+        "TLS termination contract",
+        "RFC 9421 signer/verifier or explicitly documented alternative",
+        "Content-Digest coverage",
+        "key IDs and algorithm policy",
+        "key rotation/revocation registry",
+        "nonce/time policy integrated with durable replay journal",
+        "separation of ingress authentication key from event-signing key"
+      ]
+    },
+    {
+      "id": "D06",
+      "subject": "Canonical cryptographic JSON interoperability",
+      "state": "NOT_RFC8785_CONFORMANT",
+      "why_unproven": "Hashing uses recursively sorted JavaScript object keys plus JSON.stringify. This is deterministic for tested fixtures but is not a complete RFC 8785 JCS implementation.",
+      "why_cause_unaddressed": "No JCS library or RFC conformance vectors are installed, and no I-JSON validation layer exists.",
+      "why_concept_remains": "Cross-language hashing can diverge on number/string serialization edge cases even when ordinary fixtures match.",
+      "missing_architecture": [
+        "RFC 8785 canonicalizer",
+        "I-JSON validator",
+        "official/independent conformance vectors",
+        "cross-language hash compatibility suite for JavaScript/Python/Swift"
+      ]
+    },
+    {
+      "id": "D07",
+      "subject": "Loss recovery and full source resynchronization",
+      "state": "PARTIAL",
+      "why_unproven": "The ToT journal now rejects a sequence gap after a baseline but does not itself fetch or reconstruct the missing source state.",
+      "why_cause_unaddressed": "The Sheet emitter has no snapshot/resync endpoint and there is no subscriber checkpoint/resynchronization protocol between source, dispatcher and runner.",
+      "why_concept_remains": "Detection prevents silent data loss, but a denied gap remains operationally blocked until authoritative state can be replayed or replaced with a full snapshot.",
+      "missing_architecture": [
+        "source checkpoint API",
+        "full Sheet/state snapshot producer",
+        "dispatcher resync request protocol",
+        "runner resync state machine",
+        "incomplete-update marker",
+        "checkpoint acknowledgement and safe sequence reset",
+        "idempotent replay log or source event journal"
+      ]
+    },
+    {
+      "id": "D08",
+      "subject": "Live GitHub Actions qualification and telemetry runner execution",
+      "state": "UNPROVEN_PLATFORM_EXECUTION",
+      "why_unproven": "Latest Report 03 workflow run 35583950905 completed failure with a qualify job but no executed steps; telemetry run 35583949510 returned no jobs. Therefore GitHub did not execute the application qualification path.",
+      "why_cause_unaddressed": "The failure occurs before workflow steps, outside the tested event_runner code. No functioning GitHub-hosted qualification runner or admitted self-hosted kex/telemetry runner has been observed for these runs.",
+      "why_concept_remains": "Repository code can be locally correct while the external job scheduler/runner plane remains unavailable.",
+      "missing_architecture": [
+        "diagnosed GitHub Actions account/repository runner-allocation path",
+        "admitted healthy self-hosted runner for telemetry",
+        "runner heartbeat/readiness receipt",
+        "runner group/access policy",
+        "ephemeral or JIT provisioning rather than persistent shared host",
+        "external runner log retention",
+        "immutable runner image/reset mechanism",
+        "private or otherwise appropriately isolated repository/workflow trust boundary"
+      ]
+    },
+    {
+      "id": "D09",
+      "subject": "Self-hosted runner security on public repository",
+      "state": "PRODUCTION_BLOCKER",
+      "why_unproven": "The repository is public and the telemetry workflow targets a self-hosted runner. GitHub currently warns that self-hosted runners should almost never be used for public repositories because untrusted workflow code can persistently compromise them.",
+      "why_cause_unaddressed": "The repository/trust topology has not been changed and the installer still provisions a persistent service runner.",
+      "why_concept_remains": "Runner-side ToT validates event payloads but cannot protect a host from arbitrary workflow code that executes before or alongside that validator if repository/workflow trust is compromised.",
+      "missing_architecture": [
+        "private execution repository or strongly restricted runner-access topology",
+        "ephemeral one-job runners",
+        "JIT registration/provisioning service",
+        "runner groups and allowed-workflow policy",
+        "network sandbox/egress restrictions",
+        "secret broker with short-lived credentials",
+        "immutable image + destruction after job",
+        "external audit/log pipeline"
+      ]
+    },
+    {
+      "id": "D10",
+      "subject": "Live Google Sheet trigger and ingress path",
+      "state": "UNPROVEN",
+      "why_unproven": "TelemetryDispatch.gs is repository code only. No observed installable trigger invocation, UrlFetch response, dispatcher receipt and downstream runner receipt have been captured from the real spreadsheet.",
+      "why_cause_unaddressed": "Apps Script deployment, Script Properties, trigger binding and a reachable ingress endpoint are external operational bindings not executed in this qualification.",
+      "why_concept_remains": "A correct Apps Script function cannot prove that Google invokes it, that credentials are configured, or that its endpoint is reachable.",
+      "missing_architecture": [
+        "deployed Apps Script project/version",
+        "installable edit trigger receipt",
+        "Script Properties configuration receipt",
+        "reachable authenticated ingress endpoint",
+        "end-to-end correlation ID from Sheet to runner",
+        "dead-letter/retry policy",
+        "source-side failure/alerting"
+      ]
+    },
+    {
+      "id": "D11",
+      "subject": "Physical host identity and attestation",
+      "state": "UNPROVEN",
+      "why_unproven": "authority_id and shared-key signatures identify a configured software authority, not the physical host, boot state, TPM identity or resident-root trust state.",
+      "why_cause_unaddressed": "No hardware-backed attestation or observed BRAINK resident-root verification is integrated into this event path.",
+      "why_concept_remains": "Possession of a secret does not establish that execution happened on the intended uncompromised machine.",
+      "missing_architecture": [
+        "host admission protocol",
+        "per-host certificate/key",
+        "resident-root proof binding",
+        "optional TPM/Secure Enclave attestation where required",
+        "key rotation/revocation",
+        "attestation freshness and challenge-response",
+        "mapping from runner identity to admitted BRAINK host"
+      ]
+    },
+    {
+      "id": "D12",
+      "subject": "Evidence immutability beyond one local filesystem",
+      "state": "PARTIAL_TAMPER_EVIDENT_ONLY",
+      "why_unproven": "The JSONL ledger detects modification when an expected head is retained, but an attacker with full local filesystem control can rewrite the entire ledger and its local head.",
+      "why_cause_unaddressed": "No external anchor, replicated witness, WORM store or transparency service receives the ledger head.",
+      "why_concept_remains": "Hash chaining gives tamper evidence relative to a trusted prior root; it does not create an independent witness by itself.",
+      "missing_architecture": [
+        "external root witness",
+        "object-lock/WORM evidence storage",
+        "cross-host replicated ledger heads",
+        "signed periodic checkpoints",
+        "recovery procedure comparing independent witnesses"
+      ]
+    },
+    {
+      "id": "D13",
+      "subject": "Production availability and recovery",
+      "state": "UNPROVEN",
+      "why_unproven": "Tests exercise faults inside one local runtime, not host loss, process restart storms, disk exhaustion, network latency/loss, dependency outage or failover across production hosts.",
+      "why_cause_unaddressed": "No multi-host deployed service, SLO telemetry, failover topology or disaster-recovery environment is active in this evidence set.",
+      "why_concept_remains": "Unit/fault-injection correctness is necessary but cannot measure availability or recovery objectives.",
+      "missing_architecture": [
+        "multi-host deployment",
+        "service supervision",
+        "health/freshness telemetry",
+        "SLO/SLI definitions",
+        "failover routing",
+        "backup/restore drills",
+        "chaos/network fault injection",
+        "RTO/RPO policy and measured recovery receipts"
+      ]
+    }
+  ]
+}
