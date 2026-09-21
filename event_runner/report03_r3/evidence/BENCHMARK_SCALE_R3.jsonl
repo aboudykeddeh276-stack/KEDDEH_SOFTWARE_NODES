@@ -1,0 +1,5 @@
+{"status":"PASS","iterations":100,"tot":{"ops_per_sec":14591},"coordinate_upsert":{"ops_per_sec":7737.4},"reconcile_plan":{"nodes_per_sec":11348.1}}
+{"status":"PASS","iterations":500,"tot":{"ops_per_sec":24816.5},"coordinate_upsert":{"ops_per_sec":1837.5},"reconcile_plan":{"nodes_per_sec":44452.1}}
+{"status":"PASS","iterations":1000,"tot":{"ops_per_sec":23477.8},"coordinate_upsert":{"ops_per_sec":952},"reconcile_plan":{"nodes_per_sec":71021.2}}
+{"status":"PASS","iterations":2000,"tot":{"ops_per_sec":31758.4},"coordinate_upsert":{"ops_per_sec":457.3},"reconcile_plan":{"nodes_per_sec":113585.7}}
+{"status":"PASS","iterations":3000,"tot":{"ops_per_sec":35202.6},"coordinate_upsert":{"ops_per_sec":299.1},"reconcile_plan":{"nodes_per_sec":137129.2}}
