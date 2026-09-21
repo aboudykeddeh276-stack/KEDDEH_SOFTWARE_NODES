@@ -15,12 +15,14 @@ export class ToTSafetyKernel{
     maxReplay=4096,
     journalPath=null,
     requireSignature=true,
-    requireSequence=true
+    requireSequence=true,
+    requireContiguousSequence=true
   }={}){
     this.maxClockSkewMs=maxClockSkewMs;
     this.maxReplay=maxReplay;
     this.requireSignature=requireSignature;
     this.requireSequence=requireSequence;
+    this.requireContiguousSequence=requireContiguousSequence;
     this.seen=new Map();
     this.maxSequence=new Map();
     this.store=journalPath?new AtomicJsonStore(journalPath,seedState):null;
@@ -46,6 +48,7 @@ export class ToTSafetyKernel{
     if(replayKey&&this.seen.has(replayKey))reasons.push("REPLAY_REJECTED");
     const previous=authority?Number(this.maxSequence.get(authority)||0):0;
     if(this.requireSequence&&Number.isSafeInteger(seq)&&seq<=previous)reasons.push("SEQUENCE_ROLLBACK_REJECTED");
+    if(this.requireSequence&&this.requireContiguousSequence&&previous>0&&Number.isSafeInteger(seq)&&seq>previous+1)reasons.push("SEQUENCE_GAP_DETECTED");
     if(ctx.expectedInputHash&&ctx.expectedInputHash!==event?.input_hash)reasons.push("HASH_MISMATCH");
     const capability=event?.capability||"telemetry.apply";
     if(!ctx.authorizedCapabilities?.includes(capability))reasons.push("CAPABILITY_NOT_AUTHORIZED");
@@ -73,6 +76,7 @@ export class ToTSafetyKernel{
           if(state.seen?.[key])throw new Error("REPLAY_REJECTED_RACE");
           const max=Number(state.max_sequence?.[authority]||0);
           if(seq<=max)throw new Error("SEQUENCE_ROLLBACK_REJECTED_RACE");
+          if(this.requireContiguousSequence&&max>0&&seq>max+1)throw new Error("SEQUENCE_GAP_DETECTED_RACE");
           state.seen=state.seen||{};
           state.max_sequence=state.max_sequence||{};
           state.seen[key]=accepted;
@@ -85,6 +89,7 @@ export class ToTSafetyKernel{
         const token=String(err.message||err);
         if(token.includes("REPLAY_REJECTED_RACE"))return {decision:"DENY",reasons:["REPLAY_REJECTED"],event_id:event.event_id,authority_id:authority,sequence:seq,race_detected:true};
         if(token.includes("SEQUENCE_ROLLBACK_REJECTED_RACE"))return {decision:"DENY",reasons:["SEQUENCE_ROLLBACK_REJECTED"],event_id:event.event_id,authority_id:authority,sequence:seq,race_detected:true};
+        if(token.includes("SEQUENCE_GAP_DETECTED_RACE"))return {decision:"DENY",reasons:["SEQUENCE_GAP_DETECTED"],event_id:event.event_id,authority_id:authority,sequence:seq,race_detected:true};
         throw err;
       }
     }
