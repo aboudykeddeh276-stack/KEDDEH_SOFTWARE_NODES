@@ -227,6 +227,26 @@ stale generation rejection:             PASS
 
 These are local measurements from one Node.js process/container environment and are not portable production capacity claims.
 
+## 8.1 Independent GitHub qualification observation
+
+PR #5 was opened against the exact R3 branch head `7db3433963c9fe5d135405cfd4bad386aa2c002b`. GitHub created two workflow runs:
+
+```text
+Report 03 R3 Qualification
+run: 35584964050
+job: 106286054836
+conclusion: failure
+steps observed: 0
+
+Existing Report 03 Engineering Qualification
+run: 35584963938
+job: 106286054522
+conclusion: failure
+steps observed: 0
+```
+
+Because both jobs were created but neither recorded a single step, this evidence does **not** show that the R3 syntax checks, Node tests, stress harness or benchmark failed in GitHub. It shows that GitHub did not execute those steps. The independent execution boundary therefore remains runner startup/execution. The local qualification remains valid as local evidence but is not promoted to GitHub-CI evidence.
+
 ## 9. Current standards and established-system comparison
 
 ### NIST SP 800-207 / SP 800-207A
@@ -505,7 +525,7 @@ hardware identity                    UNPROVEN — ATTESTATION ARCHITECTURE ABSEN
 external replicated durability       UNPROVEN — REPLICATED STORAGE ARCHITECTURE ABSENT
 independent immutable evidence       UNPROVEN — EXTERNAL WITNESS/TRANSPARENCY ARCHITECTURE ABSENT
 coordinate production scale          FALSIFIED AT CURRENT STORAGE SHAPE — PER-RECORD/WAL/KV ARCHITECTURE ABSENT
-production runner execution          PENDING INDEPENDENT REPOSITORY QUALIFICATION
+production runner execution          UNPROVEN — GITHUB JOBS CREATED BUT ZERO STEPS OBSERVED
 ```
 
 That boundary is the result of execution, not prose rearrangement.
