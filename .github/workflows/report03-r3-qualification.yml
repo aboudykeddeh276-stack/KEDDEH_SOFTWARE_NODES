@@ -1,0 +1,40 @@
+name: Report 03 R3 Qualification
+on:
+  pull_request:
+    paths:
+      - 'event_runner/report03_r3/**'
+      - '.github/workflows/report03-r3-qualification.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qualify-r3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax
+        run: |
+          node --check event_runner/report03_r3/src/contract.mjs
+          node --check event_runner/report03_r3/src/durable_state.mjs
+          node --check event_runner/report03_r3/src/tot_safety_kernel.mjs
+          node --check event_runner/report03_r3/src/coordinate_directory.mjs
+          node --check event_runner/report03_r3/src/layer2_reconciler.mjs
+          node --check event_runner/report03_r3/src/evidence_receipt.mjs
+          node --check event_runner/report03_r3/src/report03_control_plane.mjs
+      - name: Full fault-injection suite
+        working-directory: event_runner/report03_r3
+        run: npm test
+      - name: Stress
+        working-directory: event_runner/report03_r3
+        run: npm run stress
+      - name: Scale characterization
+        working-directory: event_runner/report03_r3
+        run: |
+          for n in 100 500 1000 2000 3000; do
+            echo "=== N=$n ==="
+            N=$n npm run benchmark
+          done
