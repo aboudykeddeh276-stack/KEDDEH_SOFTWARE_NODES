@@ -1,0 +1,10 @@
+import {performance} from 'node:perf_hooks';
+import {classifyTelemetry,sha256,signSafetyEvent} from '../src/contract.mjs';
+import {ToTSafetyKernel} from '../src/tot_safety_kernel.mjs';
+import {CoordinateDirectory} from '../src/coordinate_directory.mjs';
+import {Layer2Reconciler} from '../src/layer2_reconciler.mjs';
+const N=Number(process.env.N||1000),now='2026-09-21T00:00:00Z',nowMs=Date.parse(now),policy={id:'p',hash:sha256({p:1})},secret='s';
+const k=new ToTSafetyKernel({maxReplay:N+1});let t=performance.now();for(let i=1;i<=N;i++){const e=signSafetyEvent(classifyTelemetry({source:'sheet',sheet_id:'S',event_id:'E'+i,sequence:i,observed_at:now,expires_at:'2026-09-21T00:05:00Z',delta:{i},node_id:'N',authority_id:'A',key_id:'k1',policy_id:policy.id,policy_hash:policy.hash,capability:'telemetry.apply'}),secret);const d=k.evaluate(e,{nowMs,policyId:policy.id,policyHash:policy.hash,authorizedCapabilities:['telemetry.apply'],nodeState:'READY',authorityKeys:{A:{k1:secret}}});if(d.decision!=='ALLOW')throw new Error('deny')};const totMs=performance.now()-t;
+const d=new CoordinateDirectory({writerId:'A',writerSecret:'a',writerSecrets:{A:'a'}});t=performance.now();for(let i=1;i<=N;i++)d.upsert({node_id:'N'+i,health:'READY',logical:`X${i}/Y${i}`});const coordMs=performance.now()-t;
+const desired=Array.from({length:N},(_,i)=>({node_id:'N'+i,value:i}));const observed=desired.map(x=>({...x}));observed[0]={node_id:'N0',value:-1};const r=new Layer2Reconciler();t=performance.now();const plan=r.plan(desired,observed,{generation:1});const planMs=performance.now()-t;
+console.log(JSON.stringify({status:'PASS',iterations:N,tot:{ms:+totMs.toFixed(3),ops_per_sec:+(N/(totMs/1000)).toFixed(1)},coordinate_upsert:{ms:+coordMs.toFixed(3),ops_per_sec:+(N/(coordMs/1000)).toFixed(1)},reconcile_plan:{nodes:N,ops:plan.ops.length,ms:+planMs.toFixed(3),nodes_per_sec:+(N/(planMs/1000)).toFixed(1)}},null,2));
