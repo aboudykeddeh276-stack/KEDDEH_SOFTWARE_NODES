@@ -21,11 +21,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Syntax
-        run: |
-          node --check event_runner/src/tot_safety_kernel.mjs
-          node --check event_runner/src/coordinate_directory.mjs
-          node --check event_runner/src/layer2_reconciler.mjs
-      - name: Full event-runner suite with fault injection
+      - name: Resident-equivalent Report 03 qualification
         working-directory: event_runner
-        run: npm test
+        run: npm run qualify
+      - name: Preserve qualification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report03-qualification
+          path: |
+            event_runner/evidence/REPORT03_ENGINEERING_QUALIFICATION_R2.json
+            event_runner/state/qualification/evidence-ledger.jsonl
+          if-no-files-found: warn
