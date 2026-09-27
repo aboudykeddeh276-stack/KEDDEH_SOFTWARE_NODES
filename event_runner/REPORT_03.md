@@ -1,16 +1,23 @@
-# Report 03 — Superseded Baseline
+# Report 03 — Current Authority Pointer
 
-This file records the earlier 12-test Report 03 baseline and is retained only as historical lineage.
+The historical 12-test baseline and R3 engineering report are retained as lineage.
 
-**Current authority:** `event_runner/REPORT_03_R3.md`
+**Current technical report:** `event_runner/REPORT_03_R4.md`
 
-Current R3 evidence:
+Current machine-readable evidence:
 
-- `event_runner/evidence/REPORT03_EXECUTION_RECEIPT_R3.json`
-- `event_runner/evidence/REPORT03_STANDARDS_COMPARISON_R3.json`
-- `event_runner/evidence/REPORT03_DEFICIENCY_MATRIX_R3.json`
-- `event_runner/qualify_report03.mjs`
+- `event_runner/evidence/REPORT03_EXECUTION_RECEIPT_R4.json`
+- `event_runner/evidence/REPORT03_STANDARDS_COMPARISON_R4.json`
+- `event_runner/evidence/REPORT03_DEFICIENCY_MATRIX_R4.json`
 
-The R3 engineering pass adds durable ToT replay/causal sequence state, signed event envelopes, vector-clock coordinate state, conflict resolution that causally dominates both histories, tombstones, readback-verified Layer-2 reconciliation, rollback/quarantine semantics, runner-side revalidation and a chained evidence ledger.
+R4 incorporates:
 
-Do not use the former 12-test result as the current qualification result. R3 observed 30/30 local fault/contract tests passing; distributed and external boundaries remain explicitly unproven in the R3 report.
+- the R3 ToT / coordinate-directory / Layer-2 engineering qualification (30/30 local tests);
+- v6.8 atomic coordination, maintenance and construction-trace falsification (6/6 local tests);
+- canonical workbook sync conflict/idempotency qualification (5/5 local tests);
+- canonical Google team workbook v6.8 readback;
+- the intent-first UX and diagnostic-substrate source changes;
+- current ISO/ACM comparison;
+- a causal deficiency matrix separating missing source, missing architecture, missing deployment, missing external authority and missing human/independent evidence.
+
+Do not use a prior report's result as the current qualification state.
