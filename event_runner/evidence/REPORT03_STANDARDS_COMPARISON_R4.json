@@ -1,0 +1,90 @@
+{
+  "schema": "kex.report03.r4.standards-comparison",
+  "observed_at": "2026-09-28T01:45:18+09:30",
+  "comparisons": [
+    {
+      "standard": "ISO 9241-210:2019",
+      "current_status": "Published; reviewed and confirmed in 2025",
+      "use": "Human-centred design lifecycle",
+      "observed_alignment": [
+        "Primary surface changed from operator telemetry/navigation to intent, tasks and files",
+        "Maintenance/advanced controls moved behind diagnostics",
+        "Ambient status minimized"
+      ],
+      "not_proven": [
+        "representative user research",
+        "context-of-use study",
+        "iterative usability validation",
+        "formal conformance checklist"
+      ],
+      "conclusion": "DESIGN_ALIGNMENT_ONLY_NOT_CONFORMANCE"
+    },
+    {
+      "standard": "ISO 9241-110:2020",
+      "current_status": "Published; reviewed and confirmed in 2025",
+      "use": "Interaction principles",
+      "observed_alignment": [
+        "goal-level actions are primary",
+        "system plumbing is secondary/on-demand",
+        "destructive/admin operations remain separated"
+      ],
+      "not_proven": [
+        "measured suitability for task",
+        "self-descriptiveness/usability metrics",
+        "error tolerance with representative users",
+        "accessibility interaction evaluation"
+      ],
+      "conclusion": "DESIGN_ALIGNMENT_ONLY_NOT_CONFORMANCE"
+    },
+    {
+      "standard": "ISO/IEC 25010:2023",
+      "current_status": "Published Edition 2",
+      "use": "Product quality model",
+      "observed_alignment": [
+        "reliability: durable queue, leases, retries, readback",
+        "maintainability: separated maintenance/coordination/trace modules",
+        "security/governance: non-self assessment guard and admin diagnostic separation"
+      ],
+      "not_proven": [
+        "systematic measurement across all nine quality characteristics",
+        "production performance efficiency",
+        "compatibility/interoperability measurement",
+        "safety and security evaluation at production boundary"
+      ],
+      "conclusion": "QUALITY_MODEL_REFERENCED_NOT_CERTIFIED"
+    },
+    {
+      "standard": "ISO/IEC/IEEE 29119-1:2022",
+      "current_status": "Published Edition 2",
+      "use": "Software testing general concepts",
+      "observed_alignment": [
+        "explicit falsification targets",
+        "test purpose and observed result separated",
+        "failure boundaries retained rather than promoted",
+        "30/30 prior R3 plus 6/6 v6.8 local tests recorded"
+      ],
+      "not_proven": [
+        "full organisation-level 29119 process adoption",
+        "complete test documentation set across all lifecycle levels",
+        "independent conformance audit"
+      ],
+      "conclusion": "TEST_DISCIPLINE_ALIGNMENT_ONLY_NOT_FORMAL_COMPLIANCE"
+    },
+    {
+      "standard": "ACM Code of Ethics and Professional Conduct",
+      "current_status": "Current ACM professional code",
+      "use": "Professional honesty, quality, review and system impact evaluation",
+      "observed_alignment": [
+        "capabilities and limitations separately reported",
+        "startup_failure not relabelled application failure or success",
+        "actor tests not relabelled independent assessment",
+        "unbound stages remain unbound"
+      ],
+      "not_proven": [
+        "independent professional review for this delivery",
+        "complete impact evaluation with real users/services"
+      ],
+      "conclusion": "PROFESSIONAL_PRACTICE_ALIGNMENT_WITH_OPEN_REVIEW_GAP"
+    }
+  ]
+}
