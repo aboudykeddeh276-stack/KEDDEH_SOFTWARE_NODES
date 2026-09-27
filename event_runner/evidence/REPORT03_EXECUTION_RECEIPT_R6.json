@@ -1,0 +1,89 @@
+{
+  "schema": "kex.report03.execution-receipt.r6",
+  "report_id": "REPORT-03-R6",
+  "observed_at": "2026-09-28T04:03:00+09:30",
+  "state": "COORDINATION_OBJECT_SEPARATION_IMPLEMENTED_FOCUSED_LOCAL_QUALIFICATION_PASS_DEPLOYED_RUNTIME_AND_INDEPENDENT_ASSESSMENT_UNPROVEN",
+  "canonical_law": "FLAG EVENT != MANAGEMENT DECISION != DEPARTMENTAL FLAG EVENT != TICKET != WORK RESULT != VERIFICATION != ASSESSMENT REPORT/RECEIPT",
+  "source": {
+    "repository": "aboudykeddeh276-stack/app",
+    "commits": [
+      "cf6a5ff2062753aaaae88d2b554dc2eed90e58c1",
+      "ad93f015eedb4b5c090d6fd78da62be5829a679e",
+      "920e7cdcdfcb63ec8a1d6e1b37d550f0a73591bf",
+      "c787bf3c039f6d4ffaf08bddf5821bf32e3642ec",
+      "1c7181898b632a9c34aa8aab15f3489f14055131",
+      "26da5a7d4cdc03c6bff9c25cafbdcaf4a3342dab",
+      "4c8d32cd7e7532cfe27bab234e41487d263d2f27",
+      "cd629aab4c79518f24a541bdd630bd5a5a050d14"
+    ]
+  },
+  "focused_local_execution": {
+    "coordination_separation": {
+      "method": "shimmed Python execution of updated coordination semantics",
+      "assertions": 8,
+      "passed": 8,
+      "failed": 0,
+      "proven": [
+        "ticket_close_does_not_clear_flag",
+        "work_result_does_not_create_receipt",
+        "worker_cannot_verify_own_result",
+        "assessment_requires_verification",
+        "independent_assessment_creates_receipt",
+        "receipt_number_equals_assessment_report_number",
+        "flag_clearance_requires_matching_receipt",
+        "uncleared_dependency_blocks_parent_clearance"
+      ]
+    },
+    "management_routing": {
+      "method": "focused local execution of committed management-decision logic",
+      "assertions": 5,
+      "passed": 5,
+      "failed": 0,
+      "proven": [
+        "management_decision_is_distinct_object",
+        "BOTH_creates_two_departmental_flags",
+        "IT_and_HR_receive_distinct_child_flags",
+        "departmental_flags_preserve_parent_origin",
+        "management_decision_creates_no_ticket_or_receipt"
+      ]
+    }
+  },
+  "workbook_projection": {
+    "spreadsheet_id": "1_4FjWzoLvB33TO-91WLUqF6YgN0dGzCkk2iOwd17JK0",
+    "directive": "V6.9-001",
+    "handoff": "COORD-SEP-001",
+    "feedback": [
+      "IT-20260928-009",
+      "IT-20260928-010"
+    ],
+    "readback_verified": true
+  },
+  "bilateral_handoff": {
+    "thread_id": "1a0e3ece4d1fd022",
+    "recipients": [
+      "aboudy@keddeh.com",
+      "servers.keddeh@gmail.com",
+      "keddeh.servers@gmail.com"
+    ],
+    "message_id": "1a0e429d77b13960",
+    "state": "SENT",
+    "independent_assessment_requested": true
+  },
+  "mailbox_cleanup": {
+    "query_class": "GitHub notifications: Run failed / PR run failed / Run failed at startup",
+    "remaining_matches": 0,
+    "successful_notifications_deleted": false,
+    "team_mail_deleted": false
+  },
+  "not_proven": [
+    "full app test suite with real pymongo/motor dependencies",
+    "deployed Mongo coordination runtime",
+    "HTTP API route execution",
+    "management routing through deployed API",
+    "live Sheet email flagging workflow",
+    "independent M4 assessment document number",
+    "receipt-backed clearance in deployed runtime",
+    "departmental dependency clearance across real sectors"
+  ],
+  "receipt_hash": "75ee987d93613a8c05b21b1bf49c3b1d78c49c08cf81d949bd1735d6eff25320"
+}
