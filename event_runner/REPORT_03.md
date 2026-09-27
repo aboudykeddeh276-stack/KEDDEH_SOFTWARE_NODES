@@ -1,23 +1,13 @@
-# Report 03 — Current Authority Pointer
+# Report 03 — Current Authority
 
-The historical 12-test baseline and R3 engineering report are retained as lineage.
-
-**Current technical report:** `event_runner/REPORT_03_R4.md`
+**Current technical report:** `event_runner/REPORT_03_R5.md`
 
 Current machine-readable evidence:
 
-- `event_runner/evidence/REPORT03_EXECUTION_RECEIPT_R4.json`
-- `event_runner/evidence/REPORT03_STANDARDS_COMPARISON_R4.json`
-- `event_runner/evidence/REPORT03_DEFICIENCY_MATRIX_R4.json`
+- `event_runner/evidence/REPORT03_EXECUTION_RECEIPT_R5.json`
+- `event_runner/evidence/REPORT03_STANDARDS_COMPARISON_R5.json`
+- `event_runner/evidence/REPORT03_DEFICIENCY_MATRIX_R5.json`
 
-R4 incorporates:
+Historical R3/R4 reports and receipts remain lineage evidence and are not the current qualification surface.
 
-- the R3 ToT / coordinate-directory / Layer-2 engineering qualification (30/30 local tests);
-- v6.8 atomic coordination, maintenance and construction-trace falsification (6/6 local tests);
-- canonical workbook sync conflict/idempotency qualification (5/5 local tests);
-- canonical Google team workbook v6.8 readback;
-- the intent-first UX and diagnostic-substrate source changes;
-- current ISO/ACM comparison;
-- a causal deficiency matrix separating missing source, missing architecture, missing deployment, missing external authority and missing human/independent evidence.
-
-Do not use a prior report's result as the current qualification state.
+R5 adds the version-aware Report-03 evidence bridge into the app estate, schedules evidence-root observation, exposes it through the Diagnostic Substrate, and defines the projection path into the canonical v6.8 workbook. The bridge itself was locally falsified 5/5. End-to-end deployed app/scheduler/journal/workbook/browser convergence remains unproven because the app execution plane continues to fail before build/test steps and live Google credential binding remains unobserved.
