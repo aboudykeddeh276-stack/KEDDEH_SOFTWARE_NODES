@@ -1,0 +1,150 @@
+{
+  "schema": "kex.report03.deficiency-matrix.r6",
+  "observed_at": "2026-09-28T04:03:00+09:30",
+  "prior_matrix": "REPORT03_DEFICIENCY_MATRIX_R5.json",
+  "items": [
+    {
+      "id": "R6-D01",
+      "subject": "Deployed coordination runtime",
+      "remains_unproven": "The separated flag/decision/ticket/work/verification/receipt model has not executed in the deployed app/Mongo runtime.",
+      "why_unproven": "Local focused qualifications used a shim because the current chat container lacks pymongo and the app CI execution plane still fails before normal application test execution.",
+      "why_unaddressed": "No admitted host runtime is currently connected through Remote Desktop Commander on this account, and the GitHub runner plane remains unreliable.",
+      "why_concept_remains": "Repository source plus shimmed semantics do not prove Mongo indexes, persistence, API routing, restart behavior or concurrent actor isolation in the deployed service.",
+      "missing_architecture": [
+        "connected admitted host execution surface",
+        "real Mongo instance and migrations/index creation",
+        "full app dependency installation",
+        "API integration tests",
+        "restart and concurrent-write tests",
+        "runtime health/readback receipts"
+      ]
+    },
+    {
+      "id": "R6-D02",
+      "subject": "Independent M4 assessment and receipt",
+      "remains_unproven": "No independent document-numbered M4 assessment has been received for the v6.9 coordination changes.",
+      "why_unproven": "The bilateral team has been asked to assess, but no assessor response/report number has yet been observed.",
+      "why_unaddressed": "The external assessor team operates through the second account/server-team lanes and has not yet returned the required report.",
+      "why_concept_remains": "Under the canonical rule, actor tests, commit hashes, workbook rows and tickets cannot substitute for an independent assessment receipt.",
+      "missing_architecture": [
+        "bound independent assessor runtime",
+        "assessment work queue",
+        "read-only delivery/evidence package",
+        "A/B/C assessment form",
+        "document-number issuance",
+        "critique disposition projection into IT FEEDBACK/HANDOFF"
+      ]
+    },
+    {
+      "id": "R6-D03",
+      "subject": "Automatic operational flag generation",
+      "remains_unproven": "The runtime can persist flag events, but no autonomous detector currently converts live boundary/block/gate/auth conditions into those objects.",
+      "why_unproven": "No condition-observer or event-ingress binding was added in this round.",
+      "why_unaddressed": "The current work corrected the data model and invariants first; live condition sources remain separate systems.",
+      "why_concept_remains": "A manual POST /coordination/flag-event endpoint proves object creation capability, not operational detection.",
+      "missing_architecture": [
+        "condition detector registry",
+        "typed source adapters for auth/gate/boundary/block signals",
+        "deduplication/correlation policy",
+        "severity/context normalization",
+        "idempotent flag-event creation",
+        "source readback receipts"
+      ]
+    },
+    {
+      "id": "R6-D04",
+      "subject": "Management routing automation",
+      "remains_unproven": "Management decisions can create departmental flag events, but no autonomous Management decision workflow or policy engine is bound.",
+      "why_unproven": "The API accepts an explicit management decision supplied by an actor; it does not independently decide IT/HR/BOTH.",
+      "why_unaddressed": "Management authority and policy rules have not yet been encoded as a separate decision service.",
+      "why_concept_remains": "A first-class decision object is necessary but not sufficient for governed autonomous routing.",
+      "missing_architecture": [
+        "management authority registry",
+        "decision policy/rule service",
+        "human approval path where required",
+        "routing decision audit",
+        "department capability mapping",
+        "escalation and appeal path"
+      ]
+    },
+    {
+      "id": "R6-D05",
+      "subject": "Department-specific authorization",
+      "remains_unproven": "IT and HR child flags are distinct, but the current API roles remain broad architect/operator checks.",
+      "why_unproven": "No IT/HR/Management capability scopes are enforced at the API boundary.",
+      "why_unaddressed": "The original app role model predates the corrected departmental workflow.",
+      "why_concept_remains": "Separate objects without separate authority can still be manipulated by the same broad principal.",
+      "missing_architecture": [
+        "Management/IT/HR/Verification role or capability model",
+        "per-route authorization scopes",
+        "department mailbox/account identity binding",
+        "least-privilege secrets",
+        "revocation/rotation",
+        "authorization falsification tests"
+      ]
+    },
+    {
+      "id": "R6-D06",
+      "subject": "Sheet-based incoming-email flag workflow",
+      "remains_unproven": "The owner-required HR first workflow from incoming email to Sheet flag event and explicit API task dispatch has not been executed.",
+      "why_unproven": "No Apps Script/Sheet implementation was modified or deployed in this round.",
+      "why_unaddressed": "The coordination schema correction had to precede any Sheet protocol implementation to avoid encoding the wrong object equivalences.",
+      "why_concept_remains": "Email replies, Sheet rows and API dispatches must preserve separate flag/ticket/work/verification identities.",
+      "missing_architecture": [
+        "Gmail/Workspace event ingestion",
+        "Sheet event schema for distinct object IDs",
+        "Apps Script or equivalent dispatcher",
+        "explicit API dispatch contract",
+        "retry/dead-letter handling",
+        "end-to-end correlation and readback"
+      ]
+    },
+    {
+      "id": "R6-D07",
+      "subject": "Cross-sector dependency clearance",
+      "remains_unproven": "Dependency flags are enforced locally, but no real cross-sector dependency graph has been loaded and cleared through independent receipts.",
+      "why_unproven": "The local test uses synthetic dependency flags.",
+      "why_unaddressed": "The production dependency graph across the 18 foundries has not yet been projected into the new flag-event model.",
+      "why_concept_remains": "A dependency algorithm can be correct while the actual sector relationships remain missing or stale.",
+      "missing_architecture": [
+        "foundry dependency graph",
+        "flag-to-sector relationship registry",
+        "reverse dependency traversal",
+        "receipt propagation rules",
+        "cycle detection",
+        "cross-sector clearance readback"
+      ]
+    },
+    {
+      "id": "R6-D08",
+      "subject": "Legacy object migration",
+      "remains_unproven": "Existing tickets, assessment rows and historical coordination records have not been migrated into the new separated schema.",
+      "why_unproven": "No migration was executed.",
+      "why_unaddressed": "Historical records may conflate concepts and require evidence-aware classification rather than blind conversion.",
+      "why_concept_remains": "Without migration, old records remain semantically ambiguous beside the new v6.9 model.",
+      "missing_architecture": [
+        "legacy record classifier",
+        "non-destructive migration ledger",
+        "mapping rules for historical ticket/result/assessment records",
+        "unclassifiable-record quarantine",
+        "migration readback and independent review"
+      ]
+    },
+    {
+      "id": "R6-D09",
+      "subject": "Frontend/diagnostic representation",
+      "remains_unproven": "The user/admin diagnostic surfaces do not yet visibly distinguish all new coordination object classes.",
+      "why_unproven": "No frontend component was updated in this round for flag/decision/ticket/work/verification/receipt state.",
+      "why_unaddressed": "The runtime object model was corrected first.",
+      "why_concept_remains": "Operators need separate diagnostic views to avoid recreating the same conflation at the UI layer.",
+      "missing_architecture": [
+        "diagnostic object timeline",
+        "origin/parent/dependency visualization",
+        "receipt-only clearance marker",
+        "department routing visualization",
+        "filtering by object type",
+        "accessibility/browser tests"
+      ]
+    }
+  ]
+}
