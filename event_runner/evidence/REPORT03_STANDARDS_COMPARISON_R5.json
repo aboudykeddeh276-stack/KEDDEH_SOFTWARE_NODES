@@ -1,0 +1,146 @@
+{
+  "schema": "kex.report03.r5.standards-comparison",
+  "observed_at": "2026-09-28T02:31:00+09:30",
+  "rule": "Reference alignment is not certification or conformance unless the required process and evidence were actually executed.",
+  "comparisons": [
+    {
+      "reference": "ISO 9241-210:2019",
+      "current_state": "Published; reviewed and confirmed in 2025",
+      "area": "Human-centred design for interactive systems",
+      "observed_alignment": [
+        "Intent Bar/AI interaction is primary user entry point",
+        "tasks and files are first-class user workflows",
+        "diagnostics and maintenance are segregated from the primary surface",
+        "ambient status is minimized rather than dominating the home screen"
+      ],
+      "evidence_state": "SOURCE_IMPLEMENTED_UI_UNDEPLOYED",
+      "not_proven": [
+        "representative-user context-of-use study",
+        "measured task completion improvement",
+        "iterative user evaluation",
+        "human-centred design conformance assessment"
+      ]
+    },
+    {
+      "reference": "ISO/IEC 25010:2023",
+      "current_state": "Published Edition 2",
+      "area": "ICT/software product quality model",
+      "observed_alignment": [
+        "explicit failure states rather than false-ready promotion",
+        "durable scheduler/retry/idempotency mechanics",
+        "tamper/falsification tests",
+        "diagnostic observability and evidence surfaces"
+      ],
+      "evidence_state": "QUALITY_MODEL_REFERENCE_ONLY",
+      "not_proven": [
+        "formal quality-requirement baseline",
+        "complete characteristic/subcharacteristic measurement",
+        "independent quality evaluation",
+        "certification or conformance"
+      ]
+    },
+    {
+      "reference": "ISO/IEC/IEEE 29119-1:2022",
+      "current_state": "Published",
+      "area": "Software testing general concepts",
+      "observed_alignment": [
+        "test evidence is separated from source/architecture claims",
+        "positive and negative/falsification cases are recorded"
+      ],
+      "evidence_state": "PROCESS_ALIGNMENT_ONLY"
+    },
+    {
+      "reference": "ISO/IEC/IEEE 29119-2:2021",
+      "current_state": "Published",
+      "area": "Test processes",
+      "observed_alignment": [
+        "requirements lead to testable invariants",
+        "execution results and unresolved boundaries are recorded"
+      ],
+      "evidence_state": "PARTIAL_PROCESS_ALIGNMENT",
+      "not_proven": [
+        "organizational 29119 test-process conformance audit"
+      ]
+    },
+    {
+      "reference": "ISO/IEC/IEEE 29119-3:2021",
+      "current_state": "Published",
+      "area": "Test documentation",
+      "observed_alignment": [
+        "machine-readable execution receipts",
+        "standards matrix",
+        "deficiency matrix",
+        "full technical report with evidence classes and limitations"
+      ],
+      "evidence_state": "DOCUMENTATION_ALIGNMENT_ONLY"
+    },
+    {
+      "reference": "ISO/IEC/IEEE 29119-4:2021",
+      "current_state": "Published",
+      "area": "Test techniques",
+      "observed_alignment": [
+        "boundary/failure-path tests",
+        "tamper tests",
+        "idempotency/replay/conflict tests"
+      ],
+      "evidence_state": "TECHNIQUE_ALIGNMENT_ONLY"
+    },
+    {
+      "reference": "ISO/IEC/IEEE 29119-5:2024",
+      "current_state": "Published Edition 2",
+      "area": "Keyword-driven testing",
+      "observed_alignment": [],
+      "evidence_state": "NOT_IMPLEMENTED",
+      "not_proven": [
+        "keyword-driven test framework or shareable keyword test assets"
+      ]
+    },
+    {
+      "reference": "ACM Code of Ethics and Professional Conduct",
+      "current_state": "2018 Code remains ACM professional ethics reference",
+      "area": "Professional review and comprehensive evaluation",
+      "observed_alignment": [
+        "self-assessment is explicitly rejected as independent assessment",
+        "limitations and risks remain visible",
+        "actor execution records are separated from independent assessment"
+      ],
+      "evidence_state": "GOVERNANCE_REFERENCE_ONLY",
+      "not_proven": [
+        "independent assessor currently remains unbound"
+      ]
+    },
+    {
+      "reference": "RFC 8342",
+      "area": "Intended versus operational network state",
+      "observed_alignment": [
+        "Layer-2 reconciler separates desired and observed/readback state"
+      ],
+      "evidence_state": "ARCHITECTURAL_ALIGNMENT_ONLY",
+      "not_proven": [
+        "YANG/NMDA datastore implementation"
+      ]
+    },
+    {
+      "reference": "RFC 8785",
+      "area": "JSON canonicalization",
+      "observed_alignment": [
+        "deterministic key-sorted hashing is used in several local runtimes"
+      ],
+      "evidence_state": "NOT_CONFORMANT",
+      "not_proven": [
+        "full JCS/I-JSON conformance and cross-language vectors"
+      ]
+    },
+    {
+      "reference": "RFC 9421",
+      "area": "HTTP Message Signatures",
+      "observed_alignment": [
+        "internal event HMAC safety envelopes exist"
+      ],
+      "evidence_state": "NOT_CONFORMANT",
+      "not_proven": [
+        "RFC 9421 Signature-Input/Signature component semantics"
+      ]
+    }
+  ]
+}
