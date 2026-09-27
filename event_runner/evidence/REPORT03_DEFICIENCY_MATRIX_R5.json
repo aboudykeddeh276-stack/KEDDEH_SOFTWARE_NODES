@@ -1,0 +1,265 @@
+{
+  "schema": "kex.report03.r5.deficiency-matrix",
+  "observed_at": "2026-09-28T02:31:00+09:30",
+  "rule": "Each unresolved item records: what remains unproven; immediate reason; why that reason remains unaddressed; why the concept therefore remains open; and the exact missing architecture or operational binding required.",
+  "items": [
+    {
+      "id": "R5-D01",
+      "subject": "Canonical workbook live resident bidirectional synchronization",
+      "remains_unproven": "The bidirectional sync engine now exists and passes 5/5 local falsification tests, but no deployed app worker has authenticated to Google Sheets and completed an inbound+outbound sync cycle against the canonical workbook.",
+      "why_unproven": "The resident runtime lacks an observed KEX_TEAM_WORKBOOK_ACCESS_TOKEN/credential binding and no app-process sync receipt or Google updatedRange readback has been captured.",
+      "why_unaddressed": "Credential issuance/rotation and deployed app execution are external operational bindings. The architecture now fails closed as UNBOUND until they exist.",
+      "why_concept_remains": "Local fake-transport tests prove conflict, idempotency and schema behavior, but cannot prove Google authorization, network reachability, API quotas, workbook permissions or durable worker liveness.",
+      "missing_architecture": [
+        "deployed runtime secret/credential broker for Google access",
+        "OAuth/service-account token refresh and rotation",
+        "resident sync worker process observed healthy",
+        "live sync_once against spreadsheet 1_4FjWzoLvB33TO-91WLUqF6YgN0dGzCkk2iOwd17JK0",
+        "Google updatedRange readback receipt projected into System Journal",
+        "restart/retry/quota fault test against real API",
+        "credential revocation/recovery procedure"
+      ]
+    },
+    {
+      "id": "R5-D02",
+      "subject": "Atomic coordination runtime deployment",
+      "remains_unproven": "Mongo-backed claims, leases, heartbeat and non-self-assessment guards exist in source and pass local falsification, but are not observed in a deployed app process.",
+      "why_unproven": "GitHub Actions reports startup_failure before build/test execution and no deployed endpoint response was observed.",
+      "why_unaddressed": "The external build/deployment execution plane is failing before application validation; no alternative deployed host actuator was available in this round.",
+      "why_concept_remains": "Correct source plus local tests prove algorithmic behavior, not operational enforcement on the shared team runtime.",
+      "missing_architecture": [
+        "healthy build/deployment runner",
+        "deployed Mongo-connected app instance",
+        "coordination endpoint health probe",
+        "claim/heartbeat/release integration test against deployed database",
+        "lease-expiry/recovery observation",
+        "runtime-to-workbook projection bridge"
+      ]
+    },
+    {
+      "id": "R5-D03",
+      "subject": "Independent assessment receipt",
+      "remains_unproven": "No separate software model/system has issued the required A/B/C assessment document number.",
+      "why_unproven": "Only the implementing assistant, tests, GitHub/Drive readbacks and deterministic tooling were available. Those are not a distinct assessor model.",
+      "why_unaddressed": "No independent review model/plugin is currently connected. Available installable review tooling requires user connection before use.",
+      "why_concept_remains": "Instruction #10 explicitly forbids substituting an actor-generated hash, test log or identifier for independent assessment.",
+      "missing_architecture": [
+        "bound independent assessor model/system",
+        "assessment task routing separate from actor identity",
+        "read-only evidence package",
+        "A/B/C assessment schema",
+        "document-number issuance",
+        "assessment receipt projection into HANDOFF/IT FEEDBACK",
+        "critique disposition workflow"
+      ]
+    },
+    {
+      "id": "R5-D04",
+      "subject": "Round-robin autonomous team scheduler",
+      "remains_unproven": "The maintenance scheduler is durable, but the complete discovery→implementation→assessment→critique→integration→observation→next-assignment team cycle is not yet driven by one deployed durable scheduler.",
+      "why_unproven": "The new team coordination runtime enforces claims but does not yet execute stage transitions or assign different workers by foundry/eligibility.",
+      "why_unaddressed": "No worker registry with runtime capabilities, stage eligibility, assessor separation and successor selection has been bound to the claim service.",
+      "why_concept_remains": "A lease service prevents duplicate work; it does not create an autonomous multi-worker development cycle.",
+      "missing_architecture": [
+        "durable team-work queue",
+        "worker/capability registry",
+        "foundry-to-worker eligibility mapping",
+        "stage state machine",
+        "independent-assessor exclusion policy",
+        "retry/lease-recovery scheduler",
+        "handoff/conference event model",
+        "successor-selection algorithm",
+        "operational heartbeat and stalled-task recovery"
+      ]
+    },
+    {
+      "id": "R5-D05",
+      "subject": "Autonomous maintenance engine operational execution",
+      "remains_unproven": "The maintenance engine now also contains a scheduled Report-03 evidence-sync job, but no deployed app process has been observed executing any recurring maintenance or Report-03 sync cycle.",
+      "why_unproven": "All new app commits still terminate as GitHub startup_failure before application execution. No maintenance heartbeat, Report03 evidence state collection, or projection event has been observed from a deployed process.",
+      "why_unaddressed": "The execution/deployment plane remains unavailable. The new evidence bridge is locally falsified, but the full MaintenanceEngine depends on the app's Mongo runtime and startup lifecycle.",
+      "why_concept_remains": "A scheduled job definition and local bridge tests prove bounded mechanics, not recurrence, durable persistence, or projection from a running shared service.",
+      "missing_architecture": [
+        "healthy deployed app process with Mongo",
+        "KEX_REPORT03_ROOT mount/binding to the software-nodes estate",
+        "maintenance scheduler heartbeat observation",
+        "report03_evidence_sync recurring execution receipts",
+        "restart/lease-recovery test",
+        "System Journal readback",
+        "automatic CONTROL OUTBOX projection readback"
+      ]
+    },
+    {
+      "id": "R5-D06",
+      "subject": "Intent-first frontend compile/lint/browser behavior",
+      "remains_unproven": "The intent-first UI and new Report-03 Diagnostic Substrate panel are committed, but no successful build/lint/browser render has been observed.",
+      "why_unproven": "The latest app commit 10bae47c and every R5 integration commit report GitHub startup_failure before build/test steps; the local sandbox lacks the checked-out dependency tree.",
+      "why_unaddressed": "The external build runner remains unavailable and the sandbox cannot resolve github.com to clone/install the complete frontend estate.",
+      "why_concept_remains": "React/JSX source and static review cannot prove compilation, route integration, focus behavior, rendering, responsive behavior or accessibility.",
+      "missing_architecture": [
+        "working app build runner",
+        "lockfile-based dependency installation",
+        "production frontend build and lint",
+        "component test for Report03 panel",
+        "browser smoke test with diagnostics drawer",
+        "API integration test against /api/diagnostics/report03-evidence",
+        "responsive and accessibility tests"
+      ]
+    },
+    {
+      "id": "R5-D07",
+      "subject": "Human-centred usability evidence",
+      "remains_unproven": "The interface is structurally intent-first and diagnostics-first separation is coded, but usability improvements are not measured with representative users.",
+      "why_unproven": "No user study, task-completion comparison, error-rate/time-on-task measurement or satisfaction evaluation was executed.",
+      "why_unaddressed": "The current round focused on missing engineering/runtime mechanics and had no representative-user test cohort or instrumentation.",
+      "why_concept_remains": "ISO 9241-210 human-centred design requires iterative understanding/evaluation of users and context; layout changes alone cannot prove usability.",
+      "missing_architecture": [
+        "representative user/task profiles",
+        "context-of-use study",
+        "baseline operator-first usability metrics",
+        "intent-first usability protocol",
+        "task completion/time/error instrumentation",
+        "qualitative feedback capture",
+        "iterative design disposition loop"
+      ]
+    },
+    {
+      "id": "R5-D08",
+      "subject": "Accessibility conformance",
+      "remains_unproven": "No accessibility audit or assistive-technology execution was performed on the new UI.",
+      "why_unproven": "The frontend has not been rendered in a browser test environment and no axe/screen-reader/keyboard conformance suite ran.",
+      "why_unaddressed": "Build/browser execution is blocked and accessibility tooling is not integrated into the current CI.",
+      "why_concept_remains": "ARIA labels in source are useful but insufficient to establish accessibility conformance.",
+      "missing_architecture": [
+        "browser test runner",
+        "automated accessibility scanner",
+        "keyboard-only navigation tests",
+        "focus-order/focus-trap tests for diagnostics drawer",
+        "contrast verification",
+        "screen-reader spot tests",
+        "documented accessibility target such as WCAG profile"
+      ]
+    },
+    {
+      "id": "R5-D09",
+      "subject": "10-stage construction path full executable continuity",
+      "remains_unproven": "The trace represents all ten stages, but NODE, IL-LLM, compiler, assembler and final IL-LLM-of-seeds stages are unbound in the app repository.",
+      "why_unproven": "No local implementation artifact/source hash exists for those stages in this repository.",
+      "why_unaddressed": "The authoritative implementations may live in other BRAINK/KEX repositories or Library artifacts and have not yet been resolved and bound into this app trace.",
+      "why_concept_remains": "A visualization of a declared transition is not execution evidence. Adjacent implemented stages cannot prove the missing transformation.",
+      "missing_architecture": [
+        "cross-repository artifact resolver",
+        "authoritative node runtime binding",
+        "IL-LLM registry/ledger binding",
+        "compiler interface and execution receipt",
+        "assembler interface and execution receipt",
+        "KEX seed→engine lineage readback",
+        "final IL-LLM KEX module owner",
+        "forward and reverse relation receipts"
+      ]
+    },
+    {
+      "id": "R5-D10",
+      "subject": "Diagnostic System Journal immutability",
+      "remains_unproven": "The app ledger is hash-chained and verification is exposed, but immutable external retention is not established.",
+      "why_unproven": "Mongo records can be altered by an administrator with sufficient database control; no external witness was observed.",
+      "why_unaddressed": "No WORM/object-lock storage, signed checkpoint or replicated independent witness is bound.",
+      "why_concept_remains": "Hash chaining is tamper-evident relative to a trusted prior root, not intrinsically immutable.",
+      "missing_architecture": [
+        "external ledger-root witness",
+        "signed checkpoint schedule",
+        "WORM/object-lock evidence storage",
+        "cross-host root replication",
+        "restore/reconciliation procedure"
+      ]
+    },
+    {
+      "id": "R5-D11",
+      "subject": "R3 multi-host distributed closure",
+      "remains_unproven": "The ToT safety kernel, vector coordinate directory and Layer-2 reconciler passed local adversarial tests, but real multi-host partition/rejoin convergence and distributed fencing remain unproven.",
+      "why_unproven": "The 30-test execution used local process/filesystem replicas and adapter fixtures.",
+      "why_unaddressed": "No authenticated anti-entropy transport, peer membership service, distributed fencing or multi-host fault harness has been deployed.",
+      "why_concept_remains": "Local vector-clock correctness does not establish behavior under independent host failures and real network partitions.",
+      "missing_architecture": [
+        "authenticated peer membership",
+        "coordinate replication/anti-entropy service",
+        "per-peer checkpoints",
+        "partition/rejoin test harness",
+        "distributed fencing/lease authority",
+        "optional consensus if globally ordered decisions are required"
+      ]
+    },
+    {
+      "id": "R5-D12",
+      "subject": "Real network device actuation",
+      "remains_unproven": "Layer-2 controller semantics are proven locally but no real switch/router/FRR/Linux network target was changed and read back through a production adapter.",
+      "why_unproven": "Only generic adapter fixtures were used in R3.",
+      "why_unaddressed": "No YANG/NMDA/NETCONF/RESTCONF/gNMI or concrete FRR/Linux adapter is bound to the controller.",
+      "why_concept_remains": "A reconciler can be correct independent of whether an actual network device accepts, partially applies or rejects its configuration.",
+      "missing_architecture": [
+        "device data model",
+        "capability discovery",
+        "network management adapter",
+        "candidate/lock/confirmed-commit mapping where supported",
+        "normalized operational readback",
+        "multi-device transaction/rollback coordinator",
+        "device fault-injection environment"
+      ]
+    },
+    {
+      "id": "R5-D13",
+      "subject": "Production availability and recovery",
+      "remains_unproven": "Neither the R3 event layer nor v6.8 app layer has production SLO/failover evidence.",
+      "why_unproven": "No live multi-host deployment, measured SLI/SLO, host-loss test, disk exhaustion test or disaster recovery drill was observed.",
+      "why_unaddressed": "The deployment/runtime execution plane is not yet operationally closed.",
+      "why_concept_remains": "Unit/falsification tests prove bounded mechanics, not service availability.",
+      "missing_architecture": [
+        "multi-host deployed services",
+        "health/freshness telemetry",
+        "SLO/SLI definitions",
+        "failover routing",
+        "backup/restore",
+        "chaos/network fault injection",
+        "RTO/RPO targets and measured receipts"
+      ]
+    },
+    {
+      "id": "R5-D14",
+      "subject": "Report-03 evidence bridge and workbook projection runtime closure",
+      "remains_unproven": "The version-aware Report03EvidenceBridge passed 5/5 local falsification tests and is wired into the maintenance scheduler, diagnostics API and Diagnostic Substrate, but the integrated chain has not executed in a deployed app runtime.",
+      "why_unproven": "No deployed process has mounted KEX_REPORT03_ROOT, verified the real R5 receipt, persisted report03_evidence_state, emitted a projection event and then completed Google workbook outbox sync/readback.",
+      "why_unaddressed": "Three external/runtime bindings are simultaneously absent from observation: the app build/deployment runner, the mounted software-nodes Report-03 filesystem path, and the live Google Sheets credential/sync worker.",
+      "why_concept_remains": "The bridge algorithm is proven locally, but end-to-end evidence convergence requires independent runtime boundaries to be connected and observed. Without that, the Diagnostic Substrate remains source-integrated but operationally unverified.",
+      "missing_architecture": [
+        "deployed app runtime",
+        "read-only mount or authenticated artifact-fetch path for KEDDEH_SOFTWARE_NODES/event_runner",
+        "KEX_REPORT03_ROOT configuration and mount health check",
+        "Mongo report03_evidence_state persistence",
+        "scheduled evidence-root observation",
+        "projection event persistence through TeamCoordinationRuntime",
+        "live workbook-sync credential binding",
+        "CONTROL OUTBOX updatedRange readback",
+        "diagnostic API response and browser-rendered panel receipt"
+      ]
+    },
+    {
+      "id": "R5-D15",
+      "subject": "Standards conformance and certification",
+      "remains_unproven": "The system uses current ISO/IEC/IEEE and ACM references as engineering guidance, but no formal conformance assessment or certification has been performed.",
+      "why_unproven": "Current evidence consists of source, local tests, standards comparison and explicit governance mappings. It does not include a competent independent conformance audit against full normative requirements.",
+      "why_unaddressed": "Formal conformance requires scoped requirements, evidence mapping, competent assessors and in some cases accredited certification processes; those are outside the present local engineering execution.",
+      "why_concept_remains": "Using standards-informed practices is not equivalent to demonstrating every normative requirement or obtaining certification.",
+      "missing_architecture": [
+        "formal standards applicability statement",
+        "normative requirement traceability matrix",
+        "quality/test process evidence repository",
+        "representative user evaluation for ISO 9241-210 claims",
+        "formal product-quality measures for ISO/IEC 25010",
+        "29119 test-process/documentation audit",
+        "independent assessor with document-numbered report",
+        "certification/accreditation route only where certification is actually sought"
+      ]
+    }
+  ],
+  "prior_matrix": "REPORT03_DEFICIENCY_MATRIX_R4.json"
+}
