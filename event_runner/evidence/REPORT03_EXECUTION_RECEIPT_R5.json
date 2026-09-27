@@ -1,0 +1,115 @@
+{
+  "schema": "kex.report03.r5.execution-receipt",
+  "report_id": "REPORT-03-R5",
+  "observed_at": "2026-09-28T02:31:00+09:30",
+  "state": "LOCAL_ENGINEERING_AND_WORKBOOK_DIAGNOSTIC_CONVERGENCE_ADVANCED_EXTERNAL_RUNTIME_AND_ASSESSMENT_UNPROVEN",
+  "prior_report": "event_runner/REPORT_03_R4.md",
+  "evidence_classes": [
+    "DECLARED_ARCHITECTURE",
+    "OBSERVED_SOURCE",
+    "OBSERVED_EXECUTION",
+    "MEASURED_EXTERNAL_BEHAVIOUR"
+  ],
+  "retained_execution": {
+    "r3_tot_coordinate_l2": {
+      "passed": 30,
+      "failed": 0,
+      "receipt": "REPORT03_EXECUTION_RECEIPT_R3.json"
+    },
+    "v68_coordination_maintenance_trace": {
+      "passed": 6,
+      "failed": 0,
+      "duration_sec": 0.06,
+      "receipt": "REPORT03_EXECUTION_RECEIPT_R4.json"
+    },
+    "v68_workbook_sync": {
+      "passed": 5,
+      "failed": 0,
+      "duration_sec": 0.04,
+      "live_google_runtime_execution": "UNPROVEN"
+    }
+  },
+  "r5_engineering": {
+    "report03_evidence_bridge": {
+      "tests": {
+        "passed": 5,
+        "failed": 0,
+        "duration_sec": 0.08
+      },
+      "tested": [
+        "unbound root non-promotion",
+        "partial estate missing-artifact reporting",
+        "valid receipt observation and stable evidence root",
+        "tampered receipt rejection",
+        "artifact-change root invalidation"
+      ],
+      "commits": {
+        "bridge_initial": "d89439546f4e309924c0b2d6cef3f7f921e829ac",
+        "bridge_version_aware": "983bd9ca591f896e80dee4668b3696f45f105a3a",
+        "bridge_tests": "301a404a1a7685c6750c351003b5414067000659"
+      }
+    },
+    "diagnostic_scheduler_integration": {
+      "commits": {
+        "maintenance_report03_job": "5eb2e68e28ff093b221d91ac6a5fc3142ee3c40d",
+        "diagnostics_api": "f2e779b1186ca96a548657696c46aa9284054ace",
+        "diagnostics_ui": "dd083bb928d452e1f33c4ed57817fa2e658334e7",
+        "scheduler_idempotency_test": "10bae47c264623315eb85dc0b285024a6200d7c7"
+      },
+      "application_execution": "UNPROVEN",
+      "scheduler_idempotency_test_execution": "NOT_EXECUTED_IN_APP_RUNTIME",
+      "reason": "app GitHub runs continue to startup_failure before application steps; local sandbox lacks app Mongo dependency stack and cannot resolve github.com"
+    }
+  },
+  "workbook": {
+    "title": "KEDDEH / BRAINK Canonical Team Workbook v6.8",
+    "spreadsheet_id": "1_4FjWzoLvB33TO-91WLUqF6YgN0dGzCkk2iOwd17JK0",
+    "observed_tabs": [
+      "DIRECTIVE",
+      "HANDOFF",
+      "SECTOR SWARM",
+      "CONSTRUCTION TRACE",
+      "CONSTRUCTION RELATIONS",
+      "IT FEEDBACK",
+      "CONTROL OUTBOX",
+      "FOUNDRY REGISTRY"
+    ],
+    "foundries_registered": 18,
+    "current_runtime_lock_state": "CODE_IMPLEMENTED_LOCAL_TEST_PASS_DEPLOYMENT_UNOBSERVED",
+    "independent_assessor": "UNBOUND",
+    "live_bidirectional_sync": "UNPROVEN"
+  },
+  "app_ci": {
+    "latest_observed": {
+      "run_id": 36335828988,
+      "head_sha": "10bae47c264623315eb85dc0b285024a6200d7c7",
+      "conclusion": "startup_failure",
+      "path": "BuildFailed"
+    },
+    "all_r5_app_commits_observed": "startup_failure",
+    "interpretation": "failure before application build/test execution; not evidence that bridge or scheduler tests failed"
+  },
+  "standards_posture": {
+    "ISO_9241_210_2019": "design alignment only; no representative-user conformance evaluation",
+    "ISO_IEC_25010_2023": "quality-model comparison only; no certification or full measurement audit",
+    "ISO_IEC_IEEE_29119": "test process/documentation/technique alignment; no formal conformance audit",
+    "ACM_Code": "professional review and thorough evaluation principles used as governance reference; not a certification"
+  },
+  "not_proven": [
+    "deployed app runtime with Report03EvidenceBridge mounted",
+    "scheduled report03_evidence_sync observed recurring",
+    "Report03 evidence-root projection automatically reaching CONTROL OUTBOX",
+    "frontend compiled/linted/browser-rendered with Report 03 panel",
+    "live app↔Google Sheets synchronization",
+    "atomic claim runtime observed on deployed shared app",
+    "independent assessment document number",
+    "representative-user usability improvement",
+    "accessibility conformance",
+    "full ten-stage construction execution continuity",
+    "multi-host coordinate convergence and fencing",
+    "real network-device actuation",
+    "external immutable evidence witness",
+    "production availability and recovery"
+  ],
+  "receipt_hash": "1028e669bad586af146481ea8d325b5ae60d50029a990d6158f2e4c9388b8889"
+}
