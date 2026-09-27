@@ -5,22 +5,19 @@
   "items": [
     {
       "id": "R4-D01",
-      "subject": "Canonical workbook real-time bidirectional runtime synchronization",
-      "remains_unproven": "The Google Sheet exists, is writable/readable and contains the required tabs/foundries, but app runtime state has not been observed automatically flowing to the workbook or workbook directives flowing back into the enforcing runtime.",
-      "why_unproven": "All workbook writes in this round were performed through the connected Google Drive tool, not by the deployed Keddeh application.",
-      "why_unaddressed": "The app has no deployed Google Sheets credential binding, sync worker, conflict protocol, checkpoint cursor or retry/dead-letter path.",
-      "why_concept_remains": "A shared spreadsheet can be a coordination projection without being a synchronized control-plane replica. Calling it bidirectional before a runtime bridge executes would confuse storage accessibility with synchronization.",
+      "subject": "Canonical workbook live resident bidirectional synchronization",
+      "remains_unproven": "The bidirectional sync engine now exists and passes 5/5 local falsification tests, but no deployed app worker has authenticated to Google Sheets and completed an inbound+outbound sync cycle against the canonical workbook.",
+      "why_unproven": "The resident runtime lacks an observed KEX_TEAM_WORKBOOK_ACCESS_TOKEN/credential binding and no app-process sync receipt or Google updatedRange readback has been captured.",
+      "why_unaddressed": "Credential issuance/rotation and deployed app execution are external operational bindings. The architecture now fails closed as UNBOUND until they exist.",
+      "why_concept_remains": "Local fake-transport tests prove conflict, idempotency and schema behavior, but cannot prove Google authorization, network reachability, API quotas, workbook permissions or durable worker liveness.",
       "missing_architecture": [
-        "Google Sheets OAuth/service-account credential binding in the resident runtime",
-        "workbook sync daemon/worker with durable queue",
-        "per-sheet schema/version contract",
-        "projection cursor/checkpoint",
-        "runtime→Sheet writeback with readback",
-        "Sheet→runtime ingestion with validation/authority",
-        "conflict detection and resolution policy",
-        "idempotency keys and retry/dead-letter handling",
-        "sync heartbeat/freshness state",
-        "end-to-end correlation receipt"
+        "deployed runtime secret/credential broker for Google access",
+        "OAuth/service-account token refresh and rotation",
+        "resident sync worker process observed healthy",
+        "live sync_once against spreadsheet 1_4FjWzoLvB33TO-91WLUqF6YgN0dGzCkk2iOwd17JK0",
+        "Google updatedRange readback receipt projected into System Journal",
+        "restart/retry/quota fault test against real API",
+        "credential revocation/recovery procedure"
       ]
     },
     {
