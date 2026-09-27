@@ -1,0 +1,106 @@
+{
+  "schema": "kex.report03.r4.execution-receipt",
+  "report_id": "REPORT-03-R4",
+  "observed_at": "2026-09-28T01:45:18+09:30",
+  "state": "LOCAL_ENGINEERING_AND_DRIVE_PROJECTION_ADVANCED_EXTERNAL_RUNTIME_CLOSURE_UNPROVEN",
+  "prior_report": "event_runner/REPORT_03_R3.md",
+  "prior_engineering": {
+    "tot_coordinate_l2_tests": {
+      "passed": 30,
+      "failed": 0,
+      "evidence": "REPORT03_EXECUTION_RECEIPT_R3.json"
+    },
+    "qualification_receipt_hash": "1461df1568047ffaa2b5accf110f7f373761ce078347e69396ad73d0568a9845"
+  },
+  "v68_engineering": {
+    "local_resident_equivalent_tests": {
+      "passed": 6,
+      "failed": 0,
+      "duration_sec": 0.06,
+      "command": "PYTHONPATH=/mnt/data/v68_verify pytest -q tests/test_v68_engineering.py"
+    },
+    "tested": [
+      "atomic claim exclusion",
+      "expired lease recovery",
+      "claim worker self-assessment rejection",
+      "scheduler execution-id stability across lease recovery",
+      "VFS integrity tamper detection",
+      "construction trace unbound-stage non-promotion",
+      "construction trace repeatability"
+    ],
+    "app_commits": {
+      "maintenance_engine": "174d89a2330160b047b31166f640e74f5e71f6c8",
+      "construction_trace": "3b96f7c0302c5c5c0065af95446f64342a1bae98",
+      "server_user_workflows": "066d35776de878955e0574f82566fafc8894f54c",
+      "user_home": "f370e7e52abdf6d052fcb16400c7cb1121aa1ea4",
+      "diagnostic_substrate": "fb348f1ef7b1e7e67ec0839f60de60981697d405",
+      "intent_first_console": "d47c06835443f7b01c68c215cb1e01a6ee5b2e20",
+      "team_coordination": "3f124276d1a6e572f2d39213ee6bcab25ba4990b",
+      "coordination_api": "3c7aa01a2a619665c38dd6acd1a34b8790ca99ed",
+      "falsification_tests": "7fc1598ff8a7b8da9f7930576f4e04596007aac1"
+    }
+  },
+  "workbook": {
+    "title": "KEDDEH / BRAINK Canonical Team Workbook v6.8",
+    "spreadsheet_id": "1_4FjWzoLvB33TO-91WLUqF6YgN0dGzCkk2iOwd17JK0",
+    "observed_native_google_sheet": true,
+    "required_tabs_read_back": [
+      "DIRECTIVE",
+      "HANDOFF",
+      "SECTOR SWARM",
+      "CONSTRUCTION TRACE",
+      "CONSTRUCTION RELATIONS",
+      "IT FEEDBACK",
+      "CONTROL OUTBOX",
+      "FOUNDRY REGISTRY"
+    ],
+    "foundries_registered": 18,
+    "atomic_lock_role": "PROJECTION_ONLY; runtime lock implemented in app Mongo but deployment unobserved",
+    "bidirectional_runtime_sync": "UNPROVEN"
+  },
+  "ci": {
+    "repository": "aboudykeddeh276-stack/app",
+    "observed_runs": [
+      {
+        "run_id": 36332274660,
+        "head_sha": "7fc1598ff8a7b8da9f7930576f4e04596007aac1",
+        "conclusion": "startup_failure",
+        "path": "BuildFailed"
+      },
+      {
+        "run_id": 36332098785,
+        "head_sha": "3c7aa01a2a619665c38dd6acd1a34b8790ca99ed",
+        "conclusion": "startup_failure",
+        "path": "BuildFailed"
+      }
+    ],
+    "interpretation": "GitHub execution failed before application build/test execution; not evidence of code-test failure"
+  },
+  "independent_assessment": {
+    "status": "UNBOUND",
+    "assessment_report_number": null,
+    "reason": "No distinct bound software model/system performed A/B/C assessment. Actor-generated tests and commits cannot satisfy Instruction #10."
+  },
+  "standards_evidence": [
+    "ISO 9241-210:2019 current; confirmed 2025",
+    "ISO 9241-110:2020 current; confirmed 2025",
+    "ISO/IEC 25010:2023 current product quality model",
+    "ISO/IEC/IEEE 29119-1:2022 current general concepts for software testing",
+    "ACM Code: honesty/transparency, high quality, professional review and comprehensive evaluation"
+  ],
+  "not_proven": [
+    "deployed app runtime with new endpoints",
+    "frontend compiled/linted in GitHub CI",
+    "browser-rendered intent-first UX",
+    "autonomous maintenance engine observed running",
+    "app↔Google Sheet real-time bidirectional sync",
+    "runtime claims projected automatically into workbook",
+    "independent assessment document receipt",
+    "representative-user usability evidence",
+    "accessibility conformance evidence",
+    "multi-host coordinate anti-entropy and partition recovery",
+    "distributed fencing/consensus where required",
+    "real network device actuation",
+    "production availability"
+  ]
+}
