@@ -38,6 +38,27 @@
       "team_coordination": "3f124276d1a6e572f2d39213ee6bcab25ba4990b",
       "coordination_api": "3c7aa01a2a619665c38dd6acd1a34b8790ca99ed",
       "falsification_tests": "7fc1598ff8a7b8da9f7930576f4e04596007aac1"
+    },
+    "workbook_sync": {
+      "commits": {
+        "sync_engine": "7d9d089bc5bc87c2c9b11203bfb4905d97cff12f",
+        "runtime_binding": "4db60cf2b62be64a07b3b47941d02f3fda9d6dd5",
+        "tests": "26b394ac9afd7e7500b4aca739c3505b22dd4c11"
+      },
+      "local_resident_equivalent_tests": {
+        "passed": 5,
+        "failed": 0,
+        "duration_sec": 0.04
+      },
+      "tested": [
+        "directive ingestion exactly once",
+        "outbox projection idempotency",
+        "directive mutation conflict rejection",
+        "required-sheet validation failure",
+        "fail-closed unbound credentials",
+        "deterministic hashing"
+      ],
+      "live_google_runtime_execution": "UNPROVEN"
     }
   },
   "workbook": {
@@ -93,7 +114,6 @@
     "frontend compiled/linted in GitHub CI",
     "browser-rendered intent-first UX",
     "autonomous maintenance engine observed running",
-    "app↔Google Sheet real-time bidirectional sync",
     "runtime claims projected automatically into workbook",
     "independent assessment document receipt",
     "representative-user usability evidence",
@@ -101,6 +121,7 @@
     "multi-host coordinate anti-entropy and partition recovery",
     "distributed fencing/consensus where required",
     "real network device actuation",
-    "production availability"
+    "production availability",
+    "live app↔Google Sheet sync using resident credential and worker"
   ]
 }
