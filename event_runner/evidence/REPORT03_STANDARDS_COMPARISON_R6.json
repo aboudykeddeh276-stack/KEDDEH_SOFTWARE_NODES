@@ -1,0 +1,83 @@
+{
+  "schema": "kex.report03.standards-comparison.r6",
+  "observed_at": "2026-09-28T04:03:00+09:30",
+  "inherited_from": "REPORT03_STANDARDS_COMPARISON_R5.json",
+  "rule": "Object/process separation improves traceability and professional honesty; it is not itself a certification claim.",
+  "comparisons": [
+    {
+      "reference": "ISO/IEC/IEEE 29119-2:2021",
+      "area": "test process separation and evidence flow",
+      "observed_alignment": [
+        "work execution is separated from verification",
+        "independent verification is separated from worker results",
+        "assessment report is the receipt source",
+        "falsification tests cover prohibited state transitions"
+      ],
+      "evidence_state": "PROCESS_ALIGNMENT_ONLY",
+      "not_proven": [
+        "formal 29119 conformance audit",
+        "organizational test-process assessment"
+      ]
+    },
+    {
+      "reference": "ISO/IEC/IEEE 29119-3:2021",
+      "area": "test documentation and traceability",
+      "observed_alignment": [
+        "separate identifiers for flag events, tickets, work results, verifications, assessments and receipts",
+        "machine-readable execution receipt",
+        "canonical workbook handoff/readback"
+      ],
+      "evidence_state": "DOCUMENTATION_ALIGNMENT_ONLY"
+    },
+    {
+      "reference": "ISO/IEC 25010:2023",
+      "area": "maintainability, reliability and accountability-related product qualities",
+      "observed_alignment": [
+        "explicit object boundaries reduce accidental state coupling",
+        "receipt issuance is fail-closed behind verification",
+        "dependency clearance is explicit"
+      ],
+      "evidence_state": "QUALITY_MODEL_REFERENCE_ONLY",
+      "not_proven": [
+        "complete product-quality measurement",
+        "independent quality evaluation"
+      ]
+    },
+    {
+      "reference": "ISO 9241-210:2019",
+      "area": "human-centred separation of user workflows from operational plumbing",
+      "observed_alignment": [
+        "operational flag/ticket/verification state remains diagnostic/coordination data rather than customer-facing task success"
+      ],
+      "evidence_state": "DESIGN_ALIGNMENT_ONLY",
+      "not_proven": [
+        "representative-user evaluation",
+        "measured usability improvement"
+      ]
+    },
+    {
+      "reference": "ACM Code of Ethics and Professional Conduct",
+      "area": "professional review and honest claims",
+      "observed_alignment": [
+        "actor work cannot self-issue an independent receipt",
+        "ticket closure cannot be represented as verified remediation",
+        "unproven runtime states remain explicit"
+      ],
+      "evidence_state": "GOVERNANCE_REFERENCE_ONLY",
+      "not_proven": [
+        "independent M4 assessment still absent"
+      ]
+    },
+    {
+      "reference": "RFC 8342 / prior Report-03 network-management comparison",
+      "area": "intended versus observed state discipline",
+      "observed_alignment": [
+        "work-result and ticket state are not promoted into verified clearance state"
+      ],
+      "evidence_state": "ANALOGOUS_STATE_DISCIPLINE_ONLY",
+      "not_proven": [
+        "YANG/NMDA implementation"
+      ]
+    }
+  ]
+}
